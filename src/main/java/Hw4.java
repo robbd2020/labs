@@ -9,14 +9,10 @@ public class Hw4 {
         switch (season) {
 
             case FALL:
-                message = Temp.COLD.name();
-                break;
             case WINTER:
                 message = Temp.COLD.name();
                 break;
             case SPRING:
-                message = Temp.WARM.name();
-                break;
             case SUMMER:
                 message = Temp.WARM.name();
                 break;
