@@ -1,6 +1,6 @@
 public class Hw3 {
 
-    public static void main(String[] args) {
+    public static void all() {
         int a = 2;
         int b = 2;
         System.out.println("2++: " + a++);
