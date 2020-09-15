@@ -1,3 +1,5 @@
+package Hw3;
+
 public class Hw3 {
 
     public static void all() {
