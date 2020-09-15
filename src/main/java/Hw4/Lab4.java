@@ -7,9 +7,8 @@ public class Lab4 {
     public static Boolean elevenProof(String accountNr) {
         int multiplicationFactor = 9;
         int numberToCheck = 0;
-
         for (int i = 0; i < accountNr.length(); i++) {
-            numberToCheck += Character.getNumericValue(accountNr.charAt(i)) * multiplicationFactor--;
+            numberToCheck += Integer.parseInt(accountNr.charAt(i) + "") * multiplicationFactor--;
         }
 
         return numberToCheck % 11 == 0;
@@ -20,6 +19,11 @@ public class Lab4 {
         System.out.println("Enter number please: ");
 
         String input = myObj.nextLine();  // Read user input
-        System.out.println(elevenProof(input));
+        try {
+            System.out.println(elevenProof(input));
+        } catch (NumberFormatException e){
+            System.out.println("You entered a letter. Try again!");
+            checkBankAccountPossibility();
+        }
     }
 }
