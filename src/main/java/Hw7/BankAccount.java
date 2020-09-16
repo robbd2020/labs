@@ -1,13 +1,18 @@
 package Hw7;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
     private int accountNumber;
     private Double balance = 0d;
     private Double interestRate = 0.03;
     private static Double totalBankBalance = 0d;
+    private static List<BankAccount> accountList = new ArrayList<BankAccount>();
 
     public BankAccount(int number) {
         this.accountNumber = number;
+        accountList.add(this);
     }
 
     public void withdraw(Double amount) {
@@ -33,7 +38,19 @@ public class BankAccount {
         return this.balance;
     }
 
+    public int getAccountNumber(){
+        return accountNumber;
+    }
+
     public static Double getTotalBankBalance() {
         return totalBankBalance;
+    }
+
+    public static void printAllAccountInfo(){
+        for (BankAccount account : accountList){
+            System.out.println("Accountnumber: " + account.getAccountNumber() +
+                    " earns " + account.calculateInterestRate() +
+                    " interest per year");
+        }
     }
 }
