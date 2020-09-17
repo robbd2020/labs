@@ -14,13 +14,13 @@ public class Start {
 
         Bank2 rabo = new Bank2();
         rabo.openNewAccount();
+        rabo.printAllAccountInfo();
 //        Bank abn = new Bank();
 //        BankAccount piet = abn.openNewAccount();
 //        BankAccount sarah = abn.openNewAccount();
 //        BankAccount guus = abn.openNewAccount();
 //        BankAccount moniek = abn.openNewAccount();
 //
-//        piet.withdraw(100);
 //        piet.deposit(33.33);
 //        sarah.deposit(999.21);
 //        guus.deposit(1_000_000);

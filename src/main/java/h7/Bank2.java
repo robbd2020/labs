@@ -17,6 +17,10 @@ public class Bank2 {
         return newAccount;
     }
 
+    public void depositAccount(int account, double amount){
+        getBankAccountByNumber(account).deposit(amount);
+    }
+
     public double getTotalBankBalance() {
         double totalBankBalance = 0d;
         for (BankAccount2 account : accountMap.values()) {
