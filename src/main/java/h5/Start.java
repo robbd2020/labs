@@ -1,9 +1,7 @@
-package Hw5;
+package h5;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static Hw5.Lab5.printReverse;
-import static Hw5.Lab5.testje;
+import static h5.Lab5.printReverse;
+import static h5.Lab5.testje;
 
 public class Start {
     public static void main(String[] args) {

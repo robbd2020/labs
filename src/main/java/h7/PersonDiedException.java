@@ -1,4 +1,4 @@
-package Hw7;
+package h7;
 
 public class PersonDiedException extends Throwable {
     String message = "Harstikke dood!";

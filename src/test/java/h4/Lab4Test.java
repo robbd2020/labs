@@ -1,9 +1,8 @@
-package Hw4;
+package h4;
 
-import Hw4.*;
 import org.junit.Test;
 
-import static Hw4.Hw4.createHourGlass;
+import static h4.Hw4.createHourGlass;
 import static org.junit.Assert.*;
 
 public class Lab4Test {

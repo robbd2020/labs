@@ -1,3 +1,3 @@
-package Hw4;
+package h4;
 
 public enum Season {SPRING, SUMMER, FALL, WINTER}

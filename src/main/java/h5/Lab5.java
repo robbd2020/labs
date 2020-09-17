@@ -1,4 +1,4 @@
-package Hw5;
+package h5;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

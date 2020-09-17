@@ -1,4 +1,4 @@
-package Hw7;
+package h7;
 
 public class Start {
     public static void main(String[] args) {

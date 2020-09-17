@@ -1,4 +1,4 @@
-package Hw3;
+package h3;
 
 public class Hw3 {
 
