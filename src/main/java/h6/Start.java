@@ -14,5 +14,7 @@ public class Start {
         long[] x = {1L, 2L, 3L, 4L};
         Hw6.multiply(x, 3);
         System.out.println(Arrays.toString(x));
+
+        System.out.println(Arrays.toString(Hw6.Fibo.arrayFiboRec(1000000)));
     }
 }
