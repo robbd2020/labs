@@ -8,4 +8,10 @@ public class Hw6 {
         }
         return newArg;
     }
+
+    public static void multiply(long[] input, int multiplier){
+        for (int i = 0; i < input.length; i++){
+            input[i] *= multiplier;
+        }
+    }
 }

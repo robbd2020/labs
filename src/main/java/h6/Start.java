@@ -12,6 +12,7 @@ public class Start {
 //        System.out.println(row[4]);  // Array index out of range
 
         long[] x = {1L, 2L, 3L, 4L};
-        System.out.println(Arrays.toString(Hw6.makeLongTwiceItsSize(x)));
+        Hw6.multiply(x, 3);
+        System.out.println(Arrays.toString(x));
     }
 }
