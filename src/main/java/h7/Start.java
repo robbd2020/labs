@@ -11,10 +11,12 @@ public class Start {
 //            System.out.println(e.getMessage());
 //        }
 
-
-        Bank2 rabo = new Bank2();
-        rabo.openNewAccount();
-        rabo.printAllAccountInfo();
+        Person piet = new Person("Piet", 45);
+        System.out.println(piet.toString());
+//
+//        Bank2 rabo = new Bank2();
+//        rabo.openNewAccount();
+//        rabo.printAllAccountInfo();
 //        Bank abn = new Bank();
 //        BankAccount piet = abn.openNewAccount();
 //        BankAccount sarah = abn.openNewAccount();

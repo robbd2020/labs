@@ -9,4 +9,11 @@ public class PersonTest {
         Person jan = new Person("jan", 130);
         jan.haveBirthday();
     }
+
+    @Test
+    public void whenTwoUnequalPersonsAreCompared(){
+        Person x = new Person("Henk", 50);
+
+
+    }
 }
