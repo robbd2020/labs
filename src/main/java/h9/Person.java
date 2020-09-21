@@ -65,6 +65,7 @@ public class Person {
         this.gender = newValue;
     }
 
+    @Override
     public String toString() {
         return getName() + " (" + getAge() + ") is " + getGender();
     }
@@ -79,6 +80,11 @@ public class Person {
         return getAge() *
                 getName().hashCode() *
                 getGender().hashCode();
+    }
+
+    @Override
+    public void finalize() {
+        System.out.println("Finalize is aangeroepen!");
     }
 }
 
