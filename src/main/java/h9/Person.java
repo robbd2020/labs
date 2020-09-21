@@ -29,9 +29,9 @@ public class Person {
     }
 
     public Person(String name, int age, Gender gender) {
-        this.setName(name);
-        this.setAge(age);
-        this.setGender(gender);
+        setName(name);
+        setAge(age);
+        setGender(gender);
     }
 
     // -- methods
