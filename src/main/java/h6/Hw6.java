@@ -15,6 +15,31 @@ public class Hw6 {
         }
     }
 
+    public static void sudoku() {
+        final int SIZE = 3;
+        int[][] array = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                int randomNum;
+                do {
+                    randomNum = (int) (Math.random() * 10);
+                } while (contains(array, randomNum));
+                array[i][j] = randomNum;
+                System.out.print(array[i][j] + " ");
+            }
+        System.out.println();
+        }
+    }
+
+    public static boolean contains(int[][] arr, int valueToCheck) {
+        for (int[] row : arr) {
+            for (int element : row) {
+                if (element == valueToCheck) return true;
+            }
+        }
+        return false;
+    }
+
     public static class Fibo {
         private static final int MAX_NUMBERS_FOR_CALCULATION = 30;
 

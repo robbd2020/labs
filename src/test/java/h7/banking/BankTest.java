@@ -39,13 +39,15 @@ public class BankTest {
     @Test
     public void whenMoneyIsTransferredItIsWithdrawnCorrectly() {
         abn.transferMoney(2, 1, 100d);
-        assertEquals(piet.getBalance(), 133.33, 0.1);
+        assertEquals(133.33, piet.getBalance(), 0.1);
+        assertEquals(1_001_032.54, abn.getTotalBankBalance(),.1);
     }
 
     @Test
     public void whenMoneyIsTransferredItIsDepositedCorrectly() {
         abn.transferMoney(2, 1, 100d);
         assertEquals(sarah.getBalance(), 899.21, 0.1);
+        assertEquals(1_001_032.54, abn.getTotalBankBalance(),.1);
     }
 
     @Test
@@ -55,5 +57,6 @@ public class BankTest {
         assertEquals(999.21, sarah.getBalance(), .1);
         assertEquals(0, moniek.getBalance(), .1);
         assertEquals(33.33, piet.getBalance(), .1);
+        assertEquals(1_001_032.54, abn.getTotalBankBalance(),.1);
     }
 }

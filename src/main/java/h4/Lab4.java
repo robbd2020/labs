@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Lab4 {
 
-    public static Boolean elevenProof(String accountNr) {
-        int multiplicationFactor = 9;
+    public static Boolean elevenProof(String accountNr) throws IllegalArgumentException {
+        if (accountNr.length()!=9) throw new IllegalArgumentException("De bankrekening moet uit negen nummer bestaan");
         int numberToCheck = 0;
         for (int i = 0; i < accountNr.length(); i++) {
-            numberToCheck += Integer.parseInt(accountNr.charAt(i) + "") * multiplicationFactor--;
+            numberToCheck += Integer.parseInt(accountNr.charAt(i) + "") * (accountNr.length()-i);
         }
 
         return numberToCheck % 11 == 0;
@@ -24,6 +24,8 @@ public class Lab4 {
         } catch (NumberFormatException e){
             System.out.println("You entered a letter. Try again!");
             checkBankAccountPossibility();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 }
