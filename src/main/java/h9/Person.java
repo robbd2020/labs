@@ -45,7 +45,7 @@ public class Person {
     }
 
     public void haveBirthday() throws PersonDiedException {
-        if (this.age >= 130) throw new PersonDiedException();
+        if (this.age >= 130) throw new PersonDiedException("Persoon is overleden");
         this.age++;
     }
 
@@ -66,19 +66,19 @@ public class Person {
     }
 
     public String toString() {
-        return this.getName() + " (" + this.getAge() + ") is " + this.getGender();
+        return getName() + " (" + getAge() + ") is " + getGender();
     }
 
     public boolean equals(Person personToCompare) {
-        return (this.getAge() == personToCompare.getAge() &&
-                this.getGender() == personToCompare.getGender() &&
-                this.getName().equals(personToCompare.getName()));
+        return (getAge() == personToCompare.getAge() &&
+                getGender() == personToCompare.getGender() &&
+                getName().equals(personToCompare.getName()));
     }
 
     public int hashcode() {
-        return this.getAge() *
-                this.getName().hashCode() *
-                this.getGender().hashCode();
+        return getAge() *
+                getName().hashCode() *
+                getGender().hashCode();
     }
 }
 

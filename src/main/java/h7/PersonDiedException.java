@@ -1,10 +1,9 @@
 package h7;
 
-public class PersonDiedException extends Throwable {
-    String message = "Harstikke dood!";
+public class PersonDiedException extends Exception {
 
-    @Override
-    public String getMessage() {
-        return message;
+    public PersonDiedException(String message) {
+        super(message);
     }
+
 }

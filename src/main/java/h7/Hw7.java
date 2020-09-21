@@ -25,7 +25,7 @@ class Person {
     }
 
     public void haveBirthday() throws PersonDiedException {
-        if (this.age >= 130) throw new PersonDiedException();
+        if (this.age >= 130) throw new PersonDiedException("Persoon is overleden");
         this.age++;
     }
 
