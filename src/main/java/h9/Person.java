@@ -2,7 +2,9 @@ package h9;
 
 import h7.Gender;
 import h7.PersonDiedException;
+import lombok.Builder;
 
+//@Builder
 public class Person {
 
     // -- fields/properties/attributes
