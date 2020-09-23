@@ -21,7 +21,7 @@ public class StringAdder {
                 .split("[" + delimiter + "|\n]"))
                 .filter(c -> !c.isEmpty())
                 .mapToInt(Integer::parseInt)
-                .reduce(0, Integer::sum);
+                .reduce(0, (x, y) -> x + y);
 
 //        } catch (Exception e) {
 //            throw new UnsupportedOperationException("Not yet implemented");
