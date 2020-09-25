@@ -55,6 +55,38 @@ public class StringAdderTest {
 
     @Test
     public void whenAddIsCalledWithTooLargeNumberReturnException() {
-        assertThrows(NumberFormatException.class, () -> adder.add("12345657464562652562"));
+        assertThrows(NumberFormatException.class, () -> adder.add("1,12345657464562652562"));
     }
+
+    @Test
+    public void whenAddIsCalledWithDashDashWhileThatsNotPartOfDelimiterReturnException() {
+        assertThrows(NumberFormatException.class, () -> adder.add("1,2,3//,4"));
+    }
+
+    @Test
+    public void whenAddIsCalledWithDelimiterDashDashReturnSum() {
+        assertEquals(3, adder.add("//[//]1//2"));    }
+
+
+
+    @Test
+    public void whenAddIsCalledWithNegativeNumbersReturnSum() {
+        assertEquals(-3, adder.add("//r-1r-2"));
+    }
+
+    @Test
+    public void whenAddIsCalledWithTooLargeNumbersThoseNumbersAreIgnored() {
+        assertEquals(6, adder.add("1,2,3,1001,1002"));
+    }
+
+    @Test
+    public void whenAddIsCalledWithDelimitersOfLengthLargerThanOne() {
+        assertEquals(11, adder.add("//[bier]1bier7bier3bier"));
+    }
+
+    @Test
+    public void whenAddIsCalledWithMultipleDelimitersOfLengthLargerThanOne() {
+        assertEquals(11, adder.add("//[bier][wijntjes]1bier7wijntjes3bier"));
+    }
+
 }
