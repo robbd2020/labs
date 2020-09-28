@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
-    private Map<Integer, BankAccount> accountMap = new HashMap<Integer, BankAccount>();
+    private Map<Integer, BankAccount> accountMap = new HashMap<>();
     private int firstAvailableAccountNumber = ACCOUNT_START_NUMBER;
     private static int ACCOUNT_START_NUMBER = 1;
 

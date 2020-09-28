@@ -5,7 +5,7 @@ import java.util.Map;
 
 // Same Bank as in package banking, but with inner class BankAccount2. Advantage is that BankAccount2 can now be private
 public class Bank2 {
-    private Map<Integer, BankAccount2> accountMap = new HashMap<Integer, BankAccount2>();
+    private Map<Integer, BankAccount2> accountMap = new HashMap<>();
     private int firstAvailableAccountNumber = ACCOUNT_START_NUMBER;
     private static int ACCOUNT_START_NUMBER = 1;
 

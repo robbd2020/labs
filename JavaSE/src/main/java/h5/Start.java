@@ -11,7 +11,7 @@ public class Start {
         System.out.println(Lab5.factorial(11));
 
         printReverse("Hallo daar, alles goed?");
-        System.out.println("");
+        System.out.println();
         Hw5.Fibo fibo = new Hw5.Fibo();
         fibo.printFiboRec(6);
 
