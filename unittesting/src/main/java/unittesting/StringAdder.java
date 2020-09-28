@@ -20,8 +20,7 @@ public class StringAdder {
                                     : s.charAt(2))
                             : ",")
                             + "|\n"))
-                    .collect(HashMap::new, (h, o) -> h.put(h.size(), o), (h, o) -> {
-                    })
+                    .collect(HashMap::new, (h, o) -> h.put(h.size(), o), HashMap::putAll)
                     .entrySet()
                     .stream().filter(map -> !(map.getKey().equals(0) && map.getValue().toString().startsWith("//")))
                     .map(map -> map.getValue()
