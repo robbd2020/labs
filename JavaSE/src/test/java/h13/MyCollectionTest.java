@@ -1,6 +1,5 @@
 package h13;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,13 +9,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MyCollectionTest {
-
-
-    @Before
-    public void setup(){
-
-    }
-
 
     @Test
     public void whenMyIntegerCollectionIsInitializedISizeIsFourAndAllNumbersAreDefault() {
@@ -40,39 +32,39 @@ public class MyCollectionTest {
     }
 
     @Test
-    public  void whenCollectionIsFullWithFourElementsTheSizeIsStillFour(){
+    public void whenCollectionIsFullWithFourElementsTheSizeIsStillFour() {
         MyCollection<Integer> col = new MyCollection<>();
 
-        IntStream.range(1,5).forEach(col::add);
+        IntStream.range(1, 5).forEach(col::add);
         assertEquals(4, col.getContainer().length);
     }
 
     @Test
-    public void whenFiveIntegersAreAddedToMyIntCollectionTheSizeIs8(){
+    public void whenFiveIntegersAreAddedToMyIntCollectionTheSizeIs8() {
         MyCollection<Integer> col = new MyCollection<>();
 
-        IntStream.range(1,6).forEach(col::add);
+        IntStream.range(1, 6).forEach(col::add);
         assertEquals(8, col.getContainer().length);
     }
 
     @Test
-    public void whenFiveIntegersAreAddedToMyIntCollectionThoseFiveArePrintedWhenToArrayMethodIsCalled(){
+    public void whenFiveIntegersAreAddedToMyIntCollectionThoseFiveArePrintedWhenToArrayMethodIsCalled() {
         MyCollection<Integer> col = new MyCollection<>();
-        IntStream.range(1,6).forEach(col::add);
+        IntStream.range(1, 6).forEach(col::add);
         assertEquals("1, 2, 3, 4, 5", col.toString());
     }
 
     @Test
-    public void whenMyIntegerCollectionGetsSixtyFiveItemsItsSizeIs128(){
+    public void whenMyIntegerCollectionGetsSixtyFiveItemsItsSizeIs128() {
         MyCollection<Integer> col = new MyCollection<>();
-        IntStream.range(0,65).forEach(col::add);
+        IntStream.range(0, 65).forEach(col::add);
         assertEquals(128, col.getContainer().length);
     }
 
     @Test
-    public void whenMyCollectionContainsFiveStringElementsTheyArePrintedCorrectly(){
+    public void whenMyCollectionContainsFiveStringElementsTheyArePrintedCorrectly() {
         MyCollection<String> col = new MyCollection<>();
-        String[] words = {"ik", "ben", "een","beetje", "gek"};
+        String[] words = {"ik", "ben", "een", "beetje", "gek"};
         Arrays.stream(words).forEach(col::add);
         assertEquals(8, col.getContainer().length);
         assertEquals("ik, ben, een, beetje, gek", col.toString());
