@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 public class Reflection {
     public static void main(String[] args) {
-        Object person = new Person();
+        Object person = Person.builder().build();
         Field[] fields = person.getClass().getDeclaredFields();
         Method[] methods = person.getClass().getDeclaredMethods();
         String line = "------------------------------";

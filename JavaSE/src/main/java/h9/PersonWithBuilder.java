@@ -4,8 +4,8 @@ import h7.Gender;
 import h7.PersonDiedException;
 import lombok.Builder;
 
-@Builder //Builder is used, so constructors and setters are removed
-public class Person {
+@Builder
+public class PersonWithBuilder {
 
     // -- fields/properties/attributes
 
@@ -19,10 +19,6 @@ public class Person {
 
 
     // -- methods
-
-    public void setGender(Gender newGender){
-        this.gender = newGender;
-    }
 
     public Gender getGender() {
         return this.gender;
@@ -41,18 +37,16 @@ public class Person {
         return this.name;
     }
 
+
     @Override
     public String toString() {
         return getName() + " (" + getAge() + ") is " + getGender();
     }
 
-    @Override
-    public boolean equals(Object personToCompare) {
-        if (!(personToCompare instanceof Person)) return false;
-        Person p = (h9.Person) personToCompare;
-        return (getAge() == p.getAge() &&
-                getGender() == p.getGender() &&
-                getName().equals(p.getName()));
+    public boolean equals(PersonWithBuilder personToCompare) {
+        return (getAge() == personToCompare.getAge() &&
+                getGender() == personToCompare.getGender() &&
+                getName().equals(personToCompare.getName()));
     }
 
     public int hashcode() {
