@@ -47,6 +47,6 @@ public class PersonTest {
     @Test
     public void hashCodeOfPersonsWithEqualsPropertiesIsEqual() {
         piet1.setGender(Gender.UNKNOWN);
-        assertEquals(piet1.hashcode(), piet2.hashcode());
+        assertEquals(piet1.hashCode(), piet2.hashCode());
     }
 }

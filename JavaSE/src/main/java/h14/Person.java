@@ -1,10 +1,14 @@
-package h12;
+package h14;
 
 import h10.Human;
+import h12.MyAnnotation;
 import h7.Gender;
 import h7.PersonDiedException;
 
-@MyAnnotation("Greatest class ever seen")
+import java.util.ArrayList;
+import java.util.List;
+
+@MyAnnotation("Person class")
 public class Person extends Human {
 
     // -- fields/properties/attributes
@@ -12,14 +16,13 @@ public class Person extends Human {
     private int age;
     private Gender gender = Gender.UNKNOWN;
     private String name;
-    private HistoryRecord[] historyArray = new HistoryRecord[10];
-    private int positionInhistoryArray = 0;
+    private List<HistoryRecord> historyList = new ArrayList<>();
 
     static final int numberOfPossibleGenders = 3;
     static final int MAX_AGE = 130;
 
     // -- inner class
-    @MyAnnotation("The greatest in history")
+    @MyAnnotation("Person's inner class HistoryRecord")
     class HistoryRecord {
         private String description;
 
@@ -63,16 +66,13 @@ public class Person extends Human {
 
     // -- methods
 
-    @MyAnnotation("Make it great again!")
+    @MyAnnotation("We're creating history right now")
     public void addHistory(String description) {
-        if (getPositionInhistoryArray() < getHistoryArray().length) {
-            getHistoryArray()[getPositionInhistoryArray()] = new HistoryRecord(description);
-            this.positionInhistoryArray++;
-        }
+        getHistoryList().add(new HistoryRecord(description));
     }
 
     public void printHistory() {
-        for (HistoryRecord historyRecord : getHistoryArray()) {
+        for (HistoryRecord historyRecord : getHistoryList()) {
             if (historyRecord != null) System.out.println(historyRecord);
         }
     }
@@ -86,20 +86,12 @@ public class Person extends Human {
         };
     }
 
-    public HistoryRecord[] getHistoryArray() {
-        return historyArray;
+    public List<HistoryRecord> getHistoryList() {
+        return historyList;
     }
 
-    public void setHistoryArray(HistoryRecord[] historyArray) {
-        this.historyArray = historyArray;
-    }
-
-    public int getPositionInhistoryArray() {
-        return positionInhistoryArray;
-    }
-
-    public void setPositionInhistoryArray(int positionInhistoryArray) {
-        this.positionInhistoryArray = positionInhistoryArray;
+    public void setHistoryList(List<HistoryRecord> historyList) {
+        this.historyList = historyList;
     }
 
     public void setName(String name) {
@@ -144,7 +136,6 @@ public class Person extends Human {
                 getGender() == p.getGender() &&
                 getName().equals(p.getName()));
     }
-
 
     @Override
     public int hashCode() {

@@ -134,13 +134,18 @@ public class Person extends Human {
         return getName() + " (" + getAge() + ") is " + getGender();
     }
 
-    public boolean equals(h10.Person personToCompare) {
-        return (getAge() == personToCompare.getAge() &&
-                getGender() == personToCompare.getGender() &&
-                getName().equals(personToCompare.getName()));
+    @Override
+    public boolean equals(Object personToCompare) {
+        if (!(personToCompare instanceof Person)) return false;
+        Person p = (Person) personToCompare;
+        return (getAge() == p.getAge() &&
+                getGender() == p.getGender() &&
+                getName().equals(p.getName()));
     }
 
-    public int hashcode() {
+
+    @Override
+    public int hashCode() {
         return getAge() *
                 getName().hashCode() *
                 getGender().hashCode();

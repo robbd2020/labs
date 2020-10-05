@@ -55,7 +55,8 @@ public class Person {
                 getName().equals(p.getName()));
     }
 
-    public int hashcode() {
+    @Override
+    public int hashCode() {
         return getAge() *
                 getName().hashCode() *
                 getGender().hashCode();
