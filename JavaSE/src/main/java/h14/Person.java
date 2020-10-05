@@ -4,19 +4,34 @@ import h10.Human;
 import h12.MyAnnotation;
 import h7.Gender;
 import h7.PersonDiedException;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Singular;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @MyAnnotation("Person class")
 public class Person extends Human {
 
     // -- fields/properties/attributes
 
-    private int age;
+    @Builder.Default
+    @Getter
+    private int age = -1;
+    @Builder.Default
+    @Getter
+    @Setter
     private Gender gender = Gender.UNKNOWN;
-    private String name;
-    private List<HistoryRecord> historyList = new ArrayList<>();
+    @Builder.Default
+    @Getter
+    private String name = "Unknown";
+
+    @Getter
+    @Singular("eq")
+    private final List<HistoryRecord> historyList = new ArrayList<>();
 
     static final int numberOfPossibleGenders = 3;
     static final int MAX_AGE = 130;
@@ -24,18 +39,12 @@ public class Person extends Human {
     // -- inner class
     @MyAnnotation("Person's inner class HistoryRecord")
     class HistoryRecord {
+        @Getter
+        @Setter
         private String description;
 
         public HistoryRecord(String desc) {
             setDescription(desc);
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
         }
 
         @Override
@@ -44,31 +53,11 @@ public class Person extends Human {
         }
     }
 
-    // -- constructors
-
-    public Person() {
-        this("Unknown");
-    }
-
-    public Person(String name) {
-        this(name, -1);
-    }
-
-    public Person(String name, int age) {
-        this(name, age, Gender.UNKNOWN);
-    }
-
-    public Person(String name, int age, Gender gender) {
-        setName(name);
-        setAge(age);
-        setGender(gender);
-    }
-
     // -- methods
 
     @MyAnnotation("We're creating history right now")
-    public void addHistory(String description) {
-        getHistoryList().add(new HistoryRecord(description));
+    public void addHistory(String desc) {
+        this.historyList.add(new HistoryRecord(desc));
     }
 
     public void printHistory() {
@@ -86,41 +75,9 @@ public class Person extends Human {
         };
     }
 
-    public List<HistoryRecord> getHistoryList() {
-        return historyList;
-    }
-
-    public void setHistoryList(List<HistoryRecord> historyList) {
-        this.historyList = historyList;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Gender getGender() {
-        return this.gender;
-    }
-
     public void haveBirthday() throws PersonDiedException {
         if (this.age >= 130) throw new PersonDiedException("Persoon is overleden");
         this.age++;
-    }
-
-    public int getAge() {
-        return this.age;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setGender(Gender newValue) {
-        this.gender = newValue;
     }
 
     @Override

@@ -1,18 +1,17 @@
 package h14;
 
 import h7.Gender;
-import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.Is.is;
 
 public class GroupTest {
 
     @Test
     public void whenTwoPersonsWithSamePropertiesAreAddedToAGroupTheGroupOnlyContainsOnePerson() {
-        Person p1 = new Person("Jan", 33, Gender.MALE);
-        Person p2 = new Person("Jan", 33, Gender.MALE);
+        Person p1 = Person.builder().name("Jan").age(33).gender(Gender.MALE).build();
+        Person p2 = Person.builder().name("Jan").age(33).gender(Gender.MALE).build();
 
         Group groupie = new Group();
         groupie.add(p1);
