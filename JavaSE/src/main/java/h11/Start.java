@@ -29,5 +29,6 @@ public class Start {
 
         System.out.println();
         bigBank.printAllAccountInfo();
+        System.out.println(bigBank.getTotalBankBalance());
     }
 }

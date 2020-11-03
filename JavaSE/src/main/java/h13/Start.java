@@ -21,6 +21,8 @@ public class Start {
 
         dorpje.forEach(System.out::println);
 
-
+        MyCollection col = new MyCollection();
+        col.add(new Object());
+        System.out.println(col.container.length);
     }
 }

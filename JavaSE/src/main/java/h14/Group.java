@@ -17,9 +17,8 @@ public class Group {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Person person : this.group) {
-            sb.append(person.toString()).append("\n");
-        }
+        this.group.forEach((Person p) -> sb.append(p.toString()).append("\n"));
+
         return sb.toString();
     }
 }

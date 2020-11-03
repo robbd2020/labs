@@ -17,5 +17,6 @@ public class Start {
         System.out.println(groupie);
         System.out.println(groupie.getGroup().size());
         p3.printHistory();
+
     }
 }

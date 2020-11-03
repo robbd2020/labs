@@ -40,11 +40,7 @@ public class Bank {
     }
 
     double getTotalBankBalance() {
-        double totalBankBalance = 0d;
-        for (BankAccount account : accountMap.values()) {
-            totalBankBalance += account.getBalance();
-        }
-        return totalBankBalance;
+        return this.accountMap.values().stream().mapToDouble(BankAccount::getBalance).sum();
     }
 
     void printAllAccountInfo() {
@@ -59,7 +55,6 @@ public class Bank {
     private int getFirstAvailableAccountNumber() {
         return this.firstAvailableAccountNumber;
     }
-
 
     void transferMoney(int from, int to, double amount) {
         BankAccount accountFrom = getBankAccountByNumber(from);

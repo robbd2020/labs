@@ -80,6 +80,11 @@ public class StringAdderTest {
     }
 
     @Test
+    public void whenAddIsCalledWithBoundaryNumberOneThousandThisNumberIsNotIgnored() {
+        assertEquals(1006, adder.add("1,2,3,1000,1002"));
+    }
+
+    @Test
     public void whenAddIsCalledWithDelimitersOfLengthLargerThanOne() {
         assertEquals(11, adder.add("//[bier]1bier7bier3bier"));
     }
