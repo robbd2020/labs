@@ -1,6 +1,5 @@
-import dao.Dao;
-import dao.EmployeeDao;
-import domain.*;
+import org.dao.EmployeeDao;
+import org.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;

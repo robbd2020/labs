@@ -1,4 +1,4 @@
-package domain;
+package org.domain;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

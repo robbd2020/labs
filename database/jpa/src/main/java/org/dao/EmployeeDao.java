@@ -1,6 +1,6 @@
-package dao;
+package org.dao;
 
-import domain.Employee;
+import org.domain.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

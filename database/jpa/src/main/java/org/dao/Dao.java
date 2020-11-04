@@ -1,12 +1,10 @@
-package dao;
+package org.dao;
 
-import domain.Employee;
+import org.domain.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public class Dao<T> {

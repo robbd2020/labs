@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.Props.get;
+import static org.util.Props.get;
 
 public class PublisherDao {
 

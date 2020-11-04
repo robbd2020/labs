@@ -23,10 +23,10 @@
 
     <Loggers>
         <!-- name should be a package to enable logging from those packages-->
-        <Logger name="org.dao" additivity="true">
+        <Logger name="marktplaats" additivity="true">
             <appender-ref ref="fileLogger" level="all"/>
         </Logger>
-        <Root level="debug">
+        <Root level="info">
             <AppenderRef ref="console"/>
         </Root>
     </Loggers>

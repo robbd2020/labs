@@ -1,6 +1,6 @@
-package dao;
+package org.dao;
 
-import domain.Employee;
+import org.domain.Employee;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
