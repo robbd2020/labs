@@ -1,10 +1,12 @@
 package org.dao;
 
+import org.domain.AbstracteEntiteit;
+
 import javax.persistence.EntityManager;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public abstract class Dao<T, I> {
+public abstract class Dao<T extends AbstracteEntiteit, I extends Number> {
 
     protected final EntityManager em;
 
@@ -12,8 +14,9 @@ public abstract class Dao<T, I> {
         this.em = em;
     }
 
-//    public T get(I id) {
-//        return em.find(T(), id);
+    public T get(I id) {
+        return em.find(T(), id);
+    }
 
     public T getDetached(I id) {
         T t = em.find(T(), id);
@@ -56,12 +59,15 @@ public abstract class Dao<T, I> {
     }
 
     public T updateAndDetach(T item) {
+//        T managedItem = get(item.getId());
         em.getTransaction().begin();
         T merged = em.merge(item);
-        detach();
+//        detach();
         em.getTransaction().commit();
         return merged;
     }
+
+
 
     public void removeAndDetach(T item) {
         em.getTransaction().begin();

@@ -23,4 +23,6 @@ public class ArtikelService {
         artDao.updateAndDetach(a);
         return true;
     }
+
+
 }

@@ -15,7 +15,7 @@ public class MainMenu {
             try {
                 switch (App.readLine().toLowerCase()) {
                     case "1":
-                        RaadplegenArtikelen.start();
+                        ArtikelMenu.start();
                         break;
 
                     case "x":
@@ -29,6 +29,7 @@ public class MainMenu {
                 System.out.println("Dit is ongeldige invoer. Probeer het opnieuw.");
             } catch (RuntimeException t) {
                 System.out.println("Er ging iets mis... Probeer het opnieuw. ");
+                t.printStackTrace();
                 System.out.println("Foutmelding: " + t.getMessage());
             } catch (Exception e) {
                 System.out.println("Er ging iets vreselijk mis... ");

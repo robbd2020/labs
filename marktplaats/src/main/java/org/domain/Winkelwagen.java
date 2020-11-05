@@ -12,7 +12,7 @@ import java.util.List;
 public class Winkelwagen extends AbstracteEntiteit {
 
     @Getter
-    @OneToMany(mappedBy = "winkelwagen", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "winkelwagen", fetch = FetchType.EAGER)
     private List<Product> productlijst = new ArrayList<>();
 
 
