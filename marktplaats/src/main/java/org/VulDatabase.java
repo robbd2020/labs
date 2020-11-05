@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.domain.Bezorgwijze.*;
 import static org.domain.Bezorgwijze.MAGAZIJN;
+import static org.services.WinkelwagenService.plaatsInWinkelwagen;
 
 public class VulDatabase {
 
@@ -41,9 +42,9 @@ public class VulDatabase {
             catDao.saveAndDetach(catlijst);
             artDao.saveAndDetach(artlijst);
 
-            nellie.plaatsInWinkelwagen(vwBeetle);
-            nellie.plaatsInWinkelwagen(skippybal);
-            nellie.verwijderUitWinkelwagen(skippybal);
+            plaatsInWinkelwagen(nellie, vwBeetle);
+            plaatsInWinkelwagen(nellie, skippybal);
+//            nellie.verwijderUitWinkelwagen(skippybal);
             artDao.updateAndDetach(skippybal);
             artDao.updateAndDetach(vwBeetle);
 //        artDao.updateAndDetach(ferrari);

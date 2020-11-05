@@ -5,6 +5,7 @@ import org.dao.CategorieDao;
 import org.dao.GebruikerDao;
 import org.dao.WinkelwagenDao;
 import org.domain.Gebruiker;
+import org.views.HoofdMenu;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -21,9 +22,8 @@ public class App {
     public static final Gebruiker actieveGebruiker = gebDao.getDetached(5L);
 
     public static void main(String[] args) {
-
 //        VulDatabase.start(catDao, artDao, gebDao);
-        new MainMenu().start();
+        HoofdMenu.start();
     }
 
     public static String readLine() {

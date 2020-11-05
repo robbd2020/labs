@@ -1,5 +1,6 @@
 package org.dao;
 
+import org.domain.Artikel;
 import org.domain.Gebruiker;
 import org.domain.Product;
 import org.domain.Winkelwagen;
@@ -13,9 +14,7 @@ public class WinkelwagenDao extends Dao<Winkelwagen, Long>{
     }
 
     public List<Product> getProductLijst(Winkelwagen w){
-        Winkelwagen winkelwagen = getDetached(w.getId());
-        List<Product> productLijst = winkelwagen.getProductlijst();
-//        em.detach(winkelwagen);
-        return productLijst;
+
+        return em.createQuery("SELECT a from Artikel a where a.winkelwagen = :wagen").setParameter("wagen", w).getResultList();
     }
 }

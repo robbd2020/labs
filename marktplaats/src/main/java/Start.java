@@ -9,12 +9,15 @@ import org.domain.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.lang.reflect.ParameterizedType;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.domain.Bezorgwijze.*;
 import static org.domain.Bezorgwijze.AFHALEN;
+import static org.views.Printers.printMenuHeader;
+import static org.views.Printers.printOpties;
 
 public class Start {
         public static final EntityManager em = Persistence.createEntityManagerFactory("marktplaats").createEntityManager();
@@ -22,7 +25,7 @@ public class Start {
         public static final ArtikelDao artDao = new ArtikelDao(em);
         public static final GebruikerDao gebDao = new GebruikerDao(em);
     public static void main(String[] args) {
-        VulDatabase.start(catDao, artDao, gebDao);
+//        VulDatabase.start(catDao, artDao, gebDao);
 
 //        Categorie kind = new Categorie("Kinderen");
 //        Categorie speelgoed = new Categorie("Speelgoed", kind);
@@ -38,8 +41,8 @@ public class Start {
 //        Artikel vwBeetle = Product.builder().bezorgwijze(new HashSet<>(Arrays.asList(AFHALEN, MAGAZIJN))).naam("Volkwagen Beetle").beschrijving("Prachtig kevertje, maakt lawaai als je het beweegt. Excl. batterijen").prijs(new BigDecimal("17.95")).categorie(minAuto).aanbieder(piet).build();
 //        Artikel ferrari = Product.builder().bezorgwijze(new HashSet<>(Arrays.asList(MAGAZIJN))).naam("Ferrari F50").beschrijving("Voor de jonge patsers. Dikke pooierbak").prijs(new BigDecimal("89.00")).categorie(minAuto).aanbieder(arie).build();
 //
-
-
+        System.out.printf("hee");
+        System.out.println(printOpties(Arrays.asList("HOI", "doei")));
     }
 
 

@@ -26,8 +26,19 @@
         <Logger name="marktplaats" additivity="true">
             <appender-ref ref="fileLogger" level="all"/>
         </Logger>
-        <Root level="error">
-            <AppenderRef ref="console"/>
+
+        <!--to show hibernate SQL statements:-->
+        <logger name="org.hibernate.SQL" level="debug"/>
+
+        <!--to show hibernate log statements:-->
+        <!--        <Logger name="org.hibernate" level="INFO"/>-->
+
+        <!--to show binding parameter log statements:-->
+<!--                <Logger name="org.hibernate.type.descriptor.sql" level="TRACE"/>-->
+
+
+        <Root level="debug">
+            <AppenderRef ref="fileLogger"/>
         </Root>
     </Loggers>
 </Configuration>

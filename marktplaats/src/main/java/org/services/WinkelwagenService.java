@@ -1,33 +1,54 @@
 package org.services;
 
 import org.domain.Artikel;
+import org.domain.Gebruiker;
 import org.domain.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.App.*;
 import static org.App.actieveGebruiker;
-import static org.App.artDao;
 
 public class WinkelwagenService {
 
-    public static String printWinkelwagen(List<Product> productLijst){
-        String pl = ArtikelService.artikelLijstPrinter(castProductlijstNaarArtikellijst(productLijst));
-        return String.format("%s\nTotaal prijs: %s\n", pl, berekenTotaalPrijsWinkelwagen(productLijst));
+
+    public static String verwijderUitWinkelwagen(Artikel a) {
+
+        List<Product> temp = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
+        if (temp.contains(a)) {
+            verwijderUitWinkelwagen(actieveGebruiker, a);
+            return "Het artikel is verwijderd.";
+        } else {
+            return "Dit artikel zit niet in uw winkelwagen";
+        }
     }
 
-    public static List<Artikel> castProductlijstNaarArtikellijst(List<Product> productLijst) {
-        return productLijst.stream().map(p -> (Artikel) p).collect(Collectors.toList());
-    }
-
-    public static BigDecimal berekenTotaalPrijsWinkelwagen(List<Product> pl){
+    public static BigDecimal berekenTotaalPrijsWinkelwagen(List<Product> pl) {
         return pl.stream().map(p -> p.getPrijs()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public static void verwijderUitWinkelwagen(Artikel a){
-        actieveGebruiker.verwijderUitWinkelwagen(a);
-        artDao.updateAndDetach(a);
+    public static void verwijderUitWinkelwagen(Gebruiker g, Artikel a) {
+        if (a instanceof Product)
+            verwijderUitWinkelwagen(g, (Product) a);
+    }
+
+    public static void verwijderUitWinkelwagen(Gebruiker g, Product p) {
+        if (g.getWinkelwagen().getId()==p.getWinkelwagen().getId()) {
+            p.setWinkelwagen(null);
+            artDao.updateAndDetach(p);
+        }
+    }
+
+    public static void plaatsInWinkelwagen(Gebruiker g, Artikel a) {
+        if (a instanceof Product)
+            plaatsInWinkelwagen(g, (Product) a);
+    }
+
+    public static void plaatsInWinkelwagen(Gebruiker g, Product p) {
+        p.setWinkelwagen(g.getWinkelwagen());
+        artDao.updateAndDetach(p);
     }
 
 }

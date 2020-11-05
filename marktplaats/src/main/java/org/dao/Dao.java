@@ -1,12 +1,12 @@
 package org.dao;
 
 import org.domain.AbstracteEntiteit;
+import org.util.KlassenaamPrinter;
 
 import javax.persistence.EntityManager;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public abstract class Dao<T extends AbstracteEntiteit, I extends Number> {
+public abstract class Dao<T extends AbstracteEntiteit, I extends Number> extends KlassenaamPrinter<T> {
 
     protected final EntityManager em;
 
@@ -88,14 +88,5 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> {
         return em.createNamedQuery(typeSimple() + ".findAll", T()).getResultList();
     }
 
-    protected String typeSimple() {
-        return T().getSimpleName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public Class<T> T() {
-        return (Class<T>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
-    }
 
 }
