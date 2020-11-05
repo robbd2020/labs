@@ -26,7 +26,7 @@ public class WinkelwagenMenu {
                 case "1":
                     List<Product> productLijst = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
                     System.out.print(WinkelwagenService.printWinkelwagen(productLijst));
-//                    start();
+
                     break;
                 case "2":
                     System.out.println("Typ het artikelnummer van het te verwijderen product: ");

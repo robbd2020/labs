@@ -62,7 +62,7 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> {
 //        T managedItem = get(item.getId());
         em.getTransaction().begin();
         T merged = em.merge(item);
-//        detach();
+        detach();
         em.getTransaction().commit();
         return merged;
     }

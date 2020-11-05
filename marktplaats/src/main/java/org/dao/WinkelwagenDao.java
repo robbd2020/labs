@@ -13,9 +13,9 @@ public class WinkelwagenDao extends Dao<Winkelwagen, Long>{
     }
 
     public List<Product> getProductLijst(Winkelwagen w){
-        Winkelwagen winkelwagen = get(w.getId());
+        Winkelwagen winkelwagen = getDetached(w.getId());
         List<Product> productLijst = winkelwagen.getProductlijst();
-        em.detach(winkelwagen);
+//        em.detach(winkelwagen);
         return productLijst;
     }
 }
