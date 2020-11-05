@@ -8,17 +8,27 @@ public abstract class Dao<T, I> {
 
     protected final EntityManager em;
 
-    public Dao(EntityManager em) { this.em = em; }
+    public Dao(EntityManager em) {
+        this.em = em;
+    }
 
 //    public T get(I id) {
 //        return em.find(T(), id);
-//    }
 
     public T getDetached(I id) {
         T t = em.find(T(), id);
         em.detach(t);
         return t;
     }
+
+    public T getDetachedWithExistenceCheck(I id) throws EntityBestaatNietException {
+        T t = em.find(T(), id);
+        if (t == null) throw new EntityBestaatNietException("Niets gevonden met ID " + id);
+        em.detach(t);
+        return t;
+    }
+
+//    }
 
 //    public void save(T e) {
 //        em.getTransaction().begin();
@@ -39,7 +49,6 @@ public abstract class Dao<T, I> {
         detach();
         em.getTransaction().commit();
     }
-
 
     private void detach() {
         em.flush();
@@ -82,6 +91,5 @@ public abstract class Dao<T, I> {
         return (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
-
 
 }

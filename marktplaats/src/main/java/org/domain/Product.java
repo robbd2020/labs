@@ -2,10 +2,14 @@ package org.domain;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -21,7 +25,7 @@ public class Product extends Artikel {
     @ElementCollection(fetch = EAGER)
     @Enumerated(value = EnumType.STRING)
     @Builder.Default
-    private List<Bezorgwijze> bezorgwijze = new ArrayList<>();
+    private Set<Bezorgwijze> bezorgwijze = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Winkelwagen winkelwagen;
@@ -39,5 +43,8 @@ public class Product extends Artikel {
         this.winkelwagen.verwijder(this);
         setWinkelwagen(null);
     }
+
+
+
 
 }

@@ -9,17 +9,21 @@ public class MainMenu {
             System.out.println("Wat wilt u doen?");
             System.out.println("----------------------------------------------");
 
-            System.out.println("(1) [Alle beschikbare producten weergeven] ");
+            System.out.println("(1) [Artikelen zoeken] ");
             System.out.println("(x) [Afsluiten] ");
 
             try {
                 switch (App.readLine().toLowerCase()) {
                     case "1":
-                        new RaadplegenArtikelen().start(); break;
+                        RaadplegenArtikelen.start();
+                        break;
+
                     case "x":
-                        System.out.println("Tot ziens."); return;
+                        System.out.println("Tot ziens.");
+                        return;
                     default:
-                        System.out.println("Ongeldige keuze; probeer opnieuw."); break;
+                        System.out.println("Ongeldige keuze; probeer opnieuw.");
+                        break;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Dit is ongeldige invoer. Probeer het opnieuw.");

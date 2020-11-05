@@ -22,5 +22,6 @@ public class Winkelwagen extends AbstracteEntiteit {
 
     public void verwijder(Product product){
         this.productlijst.remove(product);
+        product.setWinkelwagen(null);
     }
 }

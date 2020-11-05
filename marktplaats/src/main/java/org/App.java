@@ -3,6 +3,7 @@ package org;
 import org.dao.ArtikelDao;
 import org.dao.CategorieDao;
 import org.dao.GebruikerDao;
+import org.domain.Gebruiker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -15,6 +16,7 @@ public class App {
     public static final ArtikelDao artDao = new ArtikelDao(em);
     public static final GebruikerDao gebDao = new GebruikerDao(em);
     private static final Scanner scanner = new Scanner(System.in);
+    public static final Gebruiker actieveGebruiker = gebDao.getDetached(5L);
 
     public static void main(String[] args) {
 

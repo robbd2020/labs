@@ -14,6 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 @SuperBuilder
 @Entity
 @Getter
+@NamedNativeQuery(name = "Gebruiker.vindMetWinkelwagen", query = "SELECT * FROM Gebruikers WHERE winkelwagen_id IS :winkelwagen_id")
 public class Gebruiker extends Account {
 
 //    @Setter(value = AccessLevel.NONE)
@@ -27,6 +28,7 @@ public class Gebruiker extends Account {
     @Builder.Default
     Winkelwagen winkelwagen = new Winkelwagen();
 
+    @Builder.Default
     @OneToMany(mappedBy = "aanbieder", cascade = PERSIST)
     List<Artikel> artikellijst = new ArrayList<>();
 
