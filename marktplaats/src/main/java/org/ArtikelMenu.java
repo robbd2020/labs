@@ -7,7 +7,7 @@ import org.services.ArtikelService;
 import static org.App.artDao;
 import static org.services.ArtikelService.artikelLijstPrinter;
 
-public class RaadplegenArtikelen {
+public class ArtikelMenu {
 
     public static void start() {
         while (true) {
@@ -18,7 +18,7 @@ public class RaadplegenArtikelen {
             System.out.println("(1) [Alle artikelen weergeven] ");
             System.out.println("(2) [Artikelen zoeken op basis van een zoekterm]");
             System.out.println("(3) [Artikel in winkelwagen plaatsen]");
-            System.out.println("(4) [Artikel uit winkelwagen verwijderen]");
+            System.out.println("(4) [Winkelwagen inzien]");
             System.out.println("(x) [Terug naar vorig menu] ");
 
 
@@ -40,7 +40,8 @@ public class RaadplegenArtikelen {
                     } catch(EntityBestaatNietException e){
                         System.out.println("Dit is geen ID van een beschikbaar product.");
                     }
-
+                case "4":
+                    WinkelwagenMenu.start();
                     break;
                 case "x":
                     return;
