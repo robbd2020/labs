@@ -6,7 +6,6 @@ import org.domain.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.App.*;
 import static org.App.actieveGebruiker;
@@ -16,7 +15,7 @@ public class WinkelwagenService {
 
     public static String verwijderUitWinkelwagen(Artikel a) {
 
-        List<Product> temp = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
+        List<Artikel> temp = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
         if (temp.contains(a)) {
             verwijderUitWinkelwagen(actieveGebruiker, a);
             return "Het artikel is verwijderd.";
@@ -25,7 +24,7 @@ public class WinkelwagenService {
         }
     }
 
-    public static BigDecimal berekenTotaalPrijsWinkelwagen(List<Product> pl) {
+    public static BigDecimal berekenTotaalPrijsWinkelwagen(List<Artikel> pl) {
         return pl.stream().map(p -> p.getPrijs()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

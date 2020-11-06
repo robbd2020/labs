@@ -1,13 +1,11 @@
 package org.views;
 
 import org.domain.Artikel;
-import org.domain.Product;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 import static org.services.WinkelwagenService.berekenTotaalPrijsWinkelwagen;
-import static org.services.ArtikelService.castProductlijstNaarArtikellijst;
 
 public class Printers {
 
@@ -15,8 +13,8 @@ public class Printers {
         System.out.println(s);
     }
 
-    public static String printWinkelwagen(List<Product> productLijst) {
-        String pl = artikelLijstPrinter(castProductlijstNaarArtikellijst(productLijst));
+    public static String printWinkelwagen(List<Artikel> productLijst) {
+        String pl = artikelLijstPrinter(productLijst);
         return String.format("\nInhoud van de winkelwagen:\n%s\nTotaal prijs: %s\n", pl, berekenTotaalPrijsWinkelwagen(productLijst));
     }
 

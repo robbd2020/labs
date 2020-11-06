@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
@@ -20,7 +20,7 @@ public class Gebruiker extends Account {
     @ElementCollection(fetch = LAZY)
     @Enumerated(value = EnumType.STRING)
     @Builder.Default
-    private List<Bezorgwijze> ondersteundeBezorgwijzeLijst = new ArrayList<>();
+    private Set<Bezorgwijze> ondersteundeBezorgwijzeLijst = new HashSet<>();
 
     @OneToOne(cascade = {PERSIST, MERGE, REMOVE})
     @Builder.Default

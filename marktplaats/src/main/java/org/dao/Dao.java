@@ -81,11 +81,11 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> extends
     }
 
     public List<T> findAll() {
-        return em.createQuery("SELECT item FROM " + typeSimple() + " item ", T()).getResultList();
+        return em.createQuery("SELECT item FROM " + printKlasseNaam() + " item ", T()).getResultList();
     }
 
     public List<T> findAllWithNamedQuery() {
-        return em.createNamedQuery(typeSimple() + ".findAll", T()).getResultList();
+        return em.createNamedQuery(printKlasseNaam() + ".findAll", T()).getResultList();
     }
 
 

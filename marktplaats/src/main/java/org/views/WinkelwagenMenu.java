@@ -26,7 +26,7 @@ public class WinkelwagenMenu {
 
             switch (App.readLine()) {
                 case "1":
-                    List<Product> productLijst = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
+                    List<Artikel> productLijst = winDao.getProductLijst(actieveGebruiker.getWinkelwagen());
                     print(printWinkelwagen(productLijst));
                     break;
                 case "2":

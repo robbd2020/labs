@@ -3,7 +3,7 @@ package org.util;
 import java.lang.reflect.ParameterizedType;
 
 public abstract class KlassenaamPrinter<T> {
-    protected String typeSimple() {
+    protected String printKlasseNaam() {
         return T().getSimpleName();
     }
 
