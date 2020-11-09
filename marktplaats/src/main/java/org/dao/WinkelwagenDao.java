@@ -1,8 +1,6 @@
 package org.dao;
 
 import org.domain.Artikel;
-import org.domain.Gebruiker;
-import org.domain.Product;
 import org.domain.Winkelwagen;
 
 import javax.persistence.EntityManager;
@@ -15,6 +13,6 @@ public class WinkelwagenDao extends Dao<Winkelwagen, Long>{
 
     public List<Artikel> getProductLijst(Winkelwagen w){
 
-        return em.createQuery("SELECT a from Artikel a where a.winkelwagen = :wagen").setParameter("wagen", w).getResultList();
+        return em.createQuery("SELECT a from Artikel a where a.winkelwagen = :wagen", Artikel.class).setParameter("wagen", w).getResultList();
     }
 }

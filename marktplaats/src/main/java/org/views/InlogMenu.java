@@ -5,7 +5,6 @@ import org.App;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
-import static org.App.getActieveGebruiker;
 import static org.App.setActieveGebruiker;
 import static org.services.LoginService.logInGebruiker;
 import static org.views.Printers.*;
@@ -14,7 +13,7 @@ public class InlogMenu {
 
     public static void start() {
         while (true) {
-            while (getActieveGebruiker() == null) {
+            while (App.getActieveGebruiker() == null) {
                 print(printMenuHeader(MethodHandles.lookup().lookupClass().getSimpleName()));
                 print(printOpties(Arrays.asList("Inloggen"
                         , "Afsluiten")));

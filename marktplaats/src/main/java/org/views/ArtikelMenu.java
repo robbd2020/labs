@@ -1,14 +1,10 @@
 package org.views;
 
 import org.App;
-import org.dao.EntityBestaatNietException;
-import org.domain.Artikel;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
-import static org.App.actieveGebruiker;
-import static org.App.artDao;
 import static org.services.WinkelwagenService.plaatsInWinkelwagen;
 import static org.views.Printers.*;
 
@@ -25,12 +21,12 @@ public class ArtikelMenu {
 
             switch (App.readLine()) {
                 case "1":
-                    print(String.format("\nArtikeloverzicht:\n%s", artikelLijstPrinter(artDao.vindAlleBeschikbare())));
+                    print(String.format("\nArtikeloverzicht:\n%s", artikelLijstPrinter(App.getArtDao().vindAlleBeschikbare())));
                     break;
                 case "2":
                     print("Typ uw zoekterm: ");
                     String input = App.readLine();
-                    print(String.format("\nArtikeloverzicht van artikelen die voldoen aan %s:\n%s", input,artikelLijstPrinter(artDao.zoekInAlleBeschikbare(input))));
+                    print(String.format("\nArtikeloverzicht van artikelen die voldoen aan %s:\n%s", input,artikelLijstPrinter(App.getArtDao().zoekInAlleBeschikbare(input))));
                     break;
                 case "3":
                     print("Typ het id van het product dat u in uw winkelwagen wilt plaatsen: ");

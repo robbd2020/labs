@@ -33,20 +33,20 @@ public class Artikel extends AbstracteEntiteit {
 
     @NotNull
     @ManyToOne
-    private Categorie categorie;
+    protected Categorie categorie;
 
     @NotNull
     @ManyToOne
-    private Gebruiker aanbieder;
+    protected Gebruiker aanbieder;
 
     @NotNull
     @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
     @Setter(value = AccessLevel.NONE)
     @Builder.Default
-    private LocalDateTime plaatsingsdatum = LocalDateTime.now();
+    protected LocalDateTime plaatsingsdatum = LocalDateTime.now();
 
     @ManyToOne
-    private Gebruiker koper;
+    protected Gebruiker koper;
 
     public Artikel() {
     }

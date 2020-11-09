@@ -2,6 +2,8 @@ package org.domain;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,8 +26,9 @@ public class Product extends Artikel {
     @ElementCollection(fetch = EAGER)
     @Enumerated(value = EnumType.STRING)
     @Builder.Default
+    @JoinColumn(name = "product_id")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private Set<Bezorgwijze> bezorgwijze = new HashSet<>();
-
     @ManyToOne(cascade = {PERSIST, MERGE, REMOVE})
     private Winkelwagen winkelwagen;
 

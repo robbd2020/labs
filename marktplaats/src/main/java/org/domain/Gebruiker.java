@@ -3,6 +3,8 @@ package org.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,11 +22,13 @@ public class Gebruiker extends Account {
     @ElementCollection(fetch = LAZY)
     @Enumerated(value = EnumType.STRING)
     @Builder.Default
+    @JoinColumn(name = "gebruiker_id")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private Set<Bezorgwijze> ondersteundeBezorgwijzeLijst = new HashSet<>();
 
     @OneToOne(cascade = {PERSIST, MERGE, REMOVE})
     @Builder.Default
-    Winkelwagen winkelwagen = new Winkelwagen();
+    private Winkelwagen winkelwagen = new Winkelwagen();
 
     public Gebruiker() {
     }

@@ -19,18 +19,18 @@ import javax.validation.constraints.*;
 public abstract class Account extends AbstracteEntiteit{
 
 
-    private String voornaam;
+    protected String voornaam;
     @NotNull
-    private String achternaam;
+    protected String achternaam;
     @NotNull @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
-    private String emailadres;
+    protected String emailadres;
     @NotNull @Size(min = 8, max = 50)
-    String wachtwoord;
-    String postcode;
-    String woonplaats;
-    int huisnummer;
-    String huisnummertoevoeging;
-    Boolean isActief;
+    protected String wachtwoord;
+    protected String postcode;
+    protected String woonplaats;
+    protected int huisnummer;
+    protected String huisnummertoevoeging;
+    protected Boolean isActief;
 
     public Account() {}
 }

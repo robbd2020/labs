@@ -8,6 +8,7 @@ import org.domain.Categorie;
 import org.domain.Gebruiker;
 import org.domain.Product;
 
+import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -42,14 +43,13 @@ public class VulTestDatabase {
 
     }
 
-    static void drop(CategorieDao catDao, ArtikelDao artDao, GebruikerDao gebDao) {
-        App.getWinDao().removeAll();
+    static void drop() {
+        App.getProDao().removeAll();
         App.getArtDao().removeAll();
-        App.getCatDao().removeAll();
         App.getGebDao().removeAll();
-//        artDao.removeAll();
-//        gebDao.removeAll();
-//        catDao.removeAll();
+        App.getWinDao().removeAll();
+        App.getCatDao().removeAll();
+
     }
 }
 
