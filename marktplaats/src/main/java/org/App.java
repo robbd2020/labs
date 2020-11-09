@@ -42,9 +42,6 @@ public class App {
         InlogMenu.start();
     }
 
-    public static void main(String[] args) {
-        new App().start();
-    }
 
     public static String readLine() {
         return getScanner().nextLine();

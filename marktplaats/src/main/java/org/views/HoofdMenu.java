@@ -6,6 +6,7 @@ import org.services.LoginService;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
+import static java.lang.System.exit;
 import static org.views.Printers.*;
 
 public class HoofdMenu {
@@ -27,7 +28,7 @@ public class HoofdMenu {
                         break;
                     case "x":
                         print("Tot ziens.");
-                        return;
+                        exit(0);
                     default:
                         print("Ongeldige keuze; probeer opnieuw.");
                         break;
