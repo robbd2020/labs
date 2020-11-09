@@ -1,6 +1,7 @@
 package org.views;
 
 import org.App;
+import org.services.LoginService;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
@@ -10,15 +11,19 @@ import static org.views.Printers.*;
 public class HoofdMenu {
 
     public static void start() {
-        while (true) {
+        while (App.getActieveGebruiker()!=null) {
             print(printMenuHeader(MethodHandles.lookup().lookupClass().getSimpleName()));
             print(printOpties(Arrays.asList("Artikelen zoeken"
+                    , "Uitloggen"
                     , "Afsluiten")));
 
             try {
                 switch (App.readLine().toLowerCase()) {
                     case "1":
                         ArtikelMenu.start();
+                        break;
+                    case "2":
+                        LoginService.logUit();
                         break;
                     case "x":
                         print("Tot ziens.");

@@ -34,13 +34,8 @@ public class ArtikelMenu {
                     break;
                 case "3":
                     print("Typ het id van het product dat u in uw winkelwagen wilt plaatsen: ");
-                    try {
-                        Artikel a = artDao.getDetachedWithExistenceCheck(Long.parseLong(App.readLine()));
-                        plaatsInWinkelwagen(actieveGebruiker, a);
-                        print("Het artikel is toegevoegd.");
-                    } catch (EntityBestaatNietException e) {
-                        print("Dit is geen ID van een beschikbaar product.");
-                    }
+                    print(plaatsInWinkelwagen(Long.parseLong(App.readLine())));
+                    break;
                 case "4":
                     WinkelwagenMenu.start();
                     break;

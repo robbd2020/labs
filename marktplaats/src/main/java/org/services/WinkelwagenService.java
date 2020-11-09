@@ -1,5 +1,6 @@
 package org.services;
 
+import org.dao.EntityBestaatNietException;
 import org.domain.Artikel;
 import org.domain.Gebruiker;
 import org.domain.Product;
@@ -48,6 +49,17 @@ public class WinkelwagenService {
     public static void plaatsInWinkelwagen(Gebruiker g, Product p) {
         p.setWinkelwagen(g.getWinkelwagen());
         artDao.updateAndDetach(p);
+    }
+
+    public static String plaatsInWinkelwagen(Long id) {
+        try {
+            Artikel a = artDao.getDetachedWithExistenceCheck(id);
+            plaatsInWinkelwagen(actieveGebruiker, a);
+            return("Het artikel is toegevoegd.");
+        } catch (
+                EntityBestaatNietException e) {
+            return "Dit is geen ID van een beschikbaar product.";
+        }
     }
 
 }

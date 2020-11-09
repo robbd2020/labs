@@ -26,9 +26,9 @@ public class VulDatabase {
             Categorie bal = new Categorie("Bal", speelgoed);
             Categorie minAuto = new Categorie("Miniatuur auto", speelgoed);
 
-            Gebruiker piet = Gebruiker.builder().voornaam("Piet").achternaam("Pietersen").postcode("7777QQ").emailadres("pietje@pietersen.info").huisnummer(100).huisnummertoevoeging("D").woonplaats("Groningen").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN,REMBOURS,AFHALEN,MAGAZIJN))).isActief(true).build();
-            Gebruiker arie = Gebruiker.builder().voornaam("Arie").achternaam("Adriaan").postcode("8888ZZ").emailadres("adriaantje@arie.info").huisnummer(32).woonplaats("Beek").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN,REMBOURS,MAGAZIJN))).isActief(true).build();
-            Gebruiker nellie = Gebruiker.builder().voornaam("Nellie").achternaam("Nelson").emailadres("nellie@nelson.info").wachtwoord("hoidoei").isActief(true).build();
+            Gebruiker piet = Gebruiker.builder().voornaam("Piet").achternaam("Pietersen").postcode("7777QQ").emailadres("pietje@pietersen.info").wachtwoord("hoihoiarie").huisnummer(100).huisnummertoevoeging("D").woonplaats("Groningen").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN,REMBOURS,AFHALEN,MAGAZIJN))).isActief(true).build();
+            Gebruiker arie = Gebruiker.builder().voornaam("Arie").achternaam("Adriaan").postcode("8888ZZ").emailadres("adriaantje@arie.info").wachtwoord("hoihoipiet").huisnummer(32).woonplaats("Beek").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN,REMBOURS,MAGAZIJN))).isActief(true).build();
+            Gebruiker nellie = Gebruiker.builder().voornaam("Nellie").achternaam("Nelson").emailadres("nellie@nelson.info").wachtwoord("hoihoinellie").isActief(true).build();
             gebDao.saveAndDetach(Arrays.asList(piet, arie, nellie));
 
             Artikel skippybal = Product.builder().bezorgwijze(new HashSet<>(Arrays.asList(AFHALEN, VERZENDEN, MAGAZIJN, REMBOURS))).naam("Skippybal").beschrijving("Hier kun je heerlijk op bouncen en je stuitert de kamer rondt").prijs(new BigDecimal("9.50")).categorie(bal).aanbieder(piet).build();
@@ -42,14 +42,6 @@ public class VulDatabase {
             catDao.saveAndDetach(catlijst);
             artDao.saveAndDetach(artlijst);
 
-            plaatsInWinkelwagen(nellie, vwBeetle);
-            plaatsInWinkelwagen(nellie, skippybal);
-//            nellie.verwijderUitWinkelwagen(skippybal);
-            artDao.updateAndDetach(skippybal);
-            artDao.updateAndDetach(vwBeetle);
-//        artDao.updateAndDetach(ferrari);
-
-//        gebDao.updateAndDetach(nellie);
         }
     }
 

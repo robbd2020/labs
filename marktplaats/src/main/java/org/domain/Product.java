@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import static javax.persistence.FetchType.EAGER;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Product extends Artikel {
 
+    @NotNull
     @Setter(value = AccessLevel.NONE)
     @ElementCollection(fetch = EAGER)
     @Enumerated(value = EnumType.STRING)

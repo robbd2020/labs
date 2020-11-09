@@ -31,14 +31,6 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> extends
         return t;
     }
 
-//    }
-
-//    public void save(T e) {
-//        em.getTransaction().begin();
-//        em.persist(e);
-//        em.getTransaction().commit();
-//    }
-
     public void saveAndDetach(T item) {
         em.getTransaction().begin();
         em.persist(item);
@@ -67,8 +59,6 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> extends
         return merged;
     }
 
-
-
     public void removeAndDetach(T item) {
         em.getTransaction().begin();
         em.remove(item);
@@ -84,9 +74,15 @@ public abstract class Dao<T extends AbstracteEntiteit, I extends Number> extends
         return em.createQuery("SELECT item FROM " + printKlasseNaam() + " item ", T()).getResultList();
     }
 
+    public int removeAll() {
+        em.getTransaction().begin();
+        int number = em.createQuery("DELETE FROM " + printKlasseNaam()).executeUpdate();
+        em.getTransaction().commit();
+        return number;
+    }
+
     public List<T> findAllWithNamedQuery() {
         return em.createNamedQuery(printKlasseNaam() + ".findAll", T()).getResultList();
     }
-
 
 }

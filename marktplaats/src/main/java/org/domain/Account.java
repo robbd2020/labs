@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
@@ -16,9 +17,14 @@ import javax.persistence.NamedQuery;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "Account.vindAccountMetEmailAdresEnWw", query = "SELECT a FROM Account a WHERE a.emailadres = :email AND a.wachtwoord =:wachtwoord")
 public abstract class Account extends AbstracteEntiteit{
-    String voornaam;
-    String achternaam;
-    String emailadres;
+
+
+    private String voornaam;
+    @NotNull
+    private String achternaam;
+    @NotNull @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
+    private String emailadres;
+    @NotNull @Size(min = 8, max = 50)
     String wachtwoord;
     String postcode;
     String woonplaats;

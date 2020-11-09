@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.*;
 
 @Entity
 @SuperBuilder
@@ -16,6 +17,7 @@ import javax.persistence.OneToOne;
 @EqualsAndHashCode(callSuper=false)
 public class Categorie extends AbstracteEntiteit {
 
+    @NotNull @Size(max = 30)
     String categorienaam;
 
     @OneToOne(cascade = CascadeType.PERSIST)
