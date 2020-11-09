@@ -14,7 +14,7 @@ public class HoofdMenu {
     public static void start() {
         while (App.getActieveGebruiker()!=null) {
             print(printMenuHeader(MethodHandles.lookup().lookupClass().getSimpleName()));
-            print(printOpties(Arrays.asList("Artikelen zoeken"
+            print(printOpties(Arrays.asList("Artikelmenu"
                     , "Uitloggen"
                     , "Afsluiten")));
 
