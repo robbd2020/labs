@@ -3,7 +3,6 @@ package org.views;
 import org.App;
 
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
@@ -11,7 +10,7 @@ import static org.App.setActieveGebruiker;
 import static org.services.LoginService.logInGebruiker;
 import static org.views.Printers.*;
 
-public class InlogMenu {
+public class InlogMenu implements Boundary {
 
     public static void start() {
         while (true) {

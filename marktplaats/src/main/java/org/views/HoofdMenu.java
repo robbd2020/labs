@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static java.lang.System.exit;
 import static org.views.Printers.*;
 
-public class HoofdMenu {
+public class HoofdMenu implements Boundary {
 
     public static void start() {
         while (App.getActieveGebruiker()!=null) {

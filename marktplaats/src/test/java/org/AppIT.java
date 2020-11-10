@@ -47,7 +47,6 @@ class AppIT {
 
     @AfterEach
     public void teardown() {
-        // If some tests have open transactions because of exceptions (like in testSaveDetachedEntityWithoutCatchAndRollback)
         if (em.getTransaction().isActive()) {
             em.getTransaction().rollback();
         }

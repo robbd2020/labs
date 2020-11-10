@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static org.services.WinkelwagenService.plaatsInWinkelwagen;
 import static org.views.Printers.*;
 
-public class ArtikelMenu {
+public class ArtikelMenu implements Boundary{
 
     public static void start() {
         while (true) {

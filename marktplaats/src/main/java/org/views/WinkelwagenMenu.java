@@ -11,7 +11,7 @@ import java.util.List;
 import static org.services.WinkelwagenService.verwijderUitWinkelwagen;
 import static org.views.Printers.*;
 
-public class WinkelwagenMenu {
+public class WinkelwagenMenu implements Boundary {
     public static void start() {
         while (true) {
             print(printMenuHeader(MethodHandles.lookup().lookupClass().getSimpleName()));
