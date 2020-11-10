@@ -2,6 +2,8 @@ package org.views;
 
 import org.App;
 
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
@@ -26,7 +28,7 @@ public class InlogMenu {
                             print("Typ wachtwoord:");
                             String ww = App.readLine();
                             setActieveGebruiker(logInGebruiker(email, ww));
-
+                            HoofdMenu.start();
                             break;
                         case "x":
                             print("Tot ziens.");
@@ -35,8 +37,12 @@ public class InlogMenu {
                             print("Ongeldige keuze; probeer opnieuw.");
                             break;
                     }
-                } catch (NumberFormatException e) {
+                } catch (NoResultException e){
+                    print("Geen geldige combinatie");
+                }
+                catch (NumberFormatException e) {
                     print("Dit is ongeldige invoer. Probeer het opnieuw.");
+
                 } catch (RuntimeException t) {
                     print("Er ging iets mis... Probeer het opnieuw. ");
                     t.printStackTrace();  // MOet nog gaan loggen
@@ -46,7 +52,7 @@ public class InlogMenu {
                 }
 
             }
-            HoofdMenu.start();
+
         }
     }
 }

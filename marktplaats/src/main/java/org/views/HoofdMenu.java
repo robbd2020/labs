@@ -37,7 +37,6 @@ public class HoofdMenu {
                 print("Dit is ongeldige invoer. Probeer het opnieuw.");
             } catch (RuntimeException t) {
                 print("Er ging iets mis... Probeer het opnieuw. ");
-//                t.printStackTrace();   MOet nog gaan loggen
                 print("Foutmelding: " + t.getMessage());
             } catch (Exception e) {
                 print("Er ging iets vreselijk mis... \n\"Foutmelding: " + e.getMessage() + "\nNeem contact op met de leverancier");
