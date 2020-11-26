@@ -14,6 +14,8 @@
         <module>JavaSE</module>
         <module>database</module>
         <module>marktplaats</module>
+        <module>JavaEE</module>
+        <module>JavaEE/rest</module>
     </modules>
 
     <dependencyManagement>

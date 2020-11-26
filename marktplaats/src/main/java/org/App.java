@@ -1,5 +1,7 @@
 package org;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.dao.*;
 import org.domain.Gebruiker;
 import org.views.InlogMenu;
@@ -9,14 +11,22 @@ import javax.persistence.Persistence;
 import java.util.Scanner;
 
 public class App {
-    public static EntityManager em;
-    public static CategorieDao catDao;
-    public static GebruikerDao gebDao;
-    public static ArtikelDao artDao;
-    public static WinkelwagenDao winDao;
-    public static ProductDao proDao;
+    @Getter @Setter
+    private static EntityManager em;
+    @Getter @Setter
+    private static CategorieDao catDao;
+    @Getter @Setter
+    private static GebruikerDao gebDao;
+    @Getter @Setter
+    private static ArtikelDao artDao;
+    @Getter @Setter
+    private static WinkelwagenDao winDao;
+    @Getter @Setter
+    private static ProductDao proDao;
+    @Getter
     private static final Scanner scanner = new Scanner(System.in);
-    public static Gebruiker actieveGebruiker = null;
+    @Getter @Setter
+    private static Gebruiker actieveGebruiker = null;
 
     public App() {
         setEm(Persistence.createEntityManagerFactory("marktplaats").createEntityManager());
@@ -47,64 +57,5 @@ public class App {
         return getScanner().nextLine();
     }
 
-    //Getters en Setters. Lukte niet om dit via Lombok op static fields te laten genereren
-    public static EntityManager getEm() {
-        return em;
-    }
 
-    public static ProductDao getProDao() {
-        return proDao;
-    }
-
-    public static void setProDao(ProductDao proDao) {
-        App.proDao = proDao;
-    }
-
-    public static void setEm(EntityManager em) {
-        App.em = em;
-    }
-
-    public static CategorieDao getCatDao() {
-        return catDao;
-    }
-
-    public static void setCatDao(CategorieDao catDao) {
-        App.catDao = catDao;
-    }
-
-    public static GebruikerDao getGebDao() {
-        return gebDao;
-    }
-
-    public static void setGebDao(GebruikerDao gebDao) {
-        App.gebDao = gebDao;
-    }
-
-    public static ArtikelDao getArtDao() {
-        return artDao;
-    }
-
-    public static void setArtDao(ArtikelDao artDao) {
-        App.artDao = artDao;
-    }
-
-    public static WinkelwagenDao getWinDao() {
-        return winDao;
-    }
-
-    public static void setWinDao(WinkelwagenDao winDao) {
-        App.winDao = winDao;
-    }
-
-    public static Scanner getScanner() {
-        return scanner;
-    }
-
-    public static Gebruiker getActieveGebruiker() {
-        return actieveGebruiker;
-    }
-
-    public static void setActieveGebruiker(Gebruiker actieveGebruiker) {
-        App.actieveGebruiker = actieveGebruiker;
-    }
 }

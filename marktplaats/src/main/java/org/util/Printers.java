@@ -1,4 +1,4 @@
-package org.views;
+package org.util;
 
 import org.domain.Artikel;
 

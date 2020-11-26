@@ -7,12 +7,12 @@ import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
 import static java.lang.System.exit;
-import static org.views.Printers.*;
+import static org.util.Printers.*;
 
 public class HoofdMenu implements Boundary {
 
     public static void start() {
-        while (App.getActieveGebruiker()!=null) {
+        while (App.getActieveGebruiker() != null) {
             print(printMenuHeader(MethodHandles.lookup().lookupClass().getSimpleName()));
             print(printOpties(Arrays.asList("Artikelmenu"
                     , "Uitloggen"
@@ -43,6 +43,6 @@ public class HoofdMenu implements Boundary {
             }
 
         }
-
+        return;
     }
 }

@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
 import static org.services.WinkelwagenService.plaatsInWinkelwagen;
-import static org.views.Printers.*;
+import static org.util.Printers.*;
 
 public class ArtikelMenu implements Boundary{
 

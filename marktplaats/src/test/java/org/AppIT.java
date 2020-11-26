@@ -47,8 +47,8 @@ class AppIT {
 
     @AfterEach
     public void teardown() {
-        if (em.getTransaction().isActive()) {
-            em.getTransaction().rollback();
+        if (getEm().getTransaction().isActive()) {
+            getEm().getTransaction().rollback();
         }
         VulTestDatabase.drop();
 

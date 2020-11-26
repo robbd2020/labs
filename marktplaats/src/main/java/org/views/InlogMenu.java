@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import static org.App.setActieveGebruiker;
 import static org.services.LoginService.logInGebruiker;
-import static org.views.Printers.*;
+import static org.util.Printers.*;
 
 public class InlogMenu implements Boundary {
 
@@ -51,7 +51,7 @@ public class InlogMenu implements Boundary {
                 }
 
             }
-
+            HoofdMenu.start();
         }
     }
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.services.WinkelwagenService.verwijderUitWinkelwagen;
-import static org.views.Printers.*;
+import static org.util.Printers.*;
 
 public class WinkelwagenMenu implements Boundary {
     public static void start() {
