@@ -1,8 +1,12 @@
 package org.domain;
 
+import javax.ejb.Singleton;
+import javax.enterprise.inject.Default;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Default
+@Singleton
 public class ContactDao {
     List<Contact> contacts = new ArrayList<>();
 

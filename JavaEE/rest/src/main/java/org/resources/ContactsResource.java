@@ -3,6 +3,7 @@ package org.resources;
 import org.domain.Contact;
 import org.domain.ContactDao;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
@@ -10,7 +11,8 @@ import javax.ws.rs.core.*;
 @Produces(MediaType.APPLICATION_JSON) // Always send JSON
 public class ContactsResource {
 
-    private static final ContactDao dao = new ContactDao();
+    @Inject
+    private ContactDao dao;
 
     @GET
     public Response getAll(){
