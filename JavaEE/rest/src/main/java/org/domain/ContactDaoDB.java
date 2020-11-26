@@ -25,7 +25,8 @@ public class ContactDaoDB {
     }
 
     public boolean add(Contact c) {
-        return false;
+        em.persist(c);
+        return true;
     }
 
     public boolean remove(Long id) {

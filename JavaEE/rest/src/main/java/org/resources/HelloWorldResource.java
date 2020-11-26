@@ -23,13 +23,13 @@ public class HelloWorldResource {
                 .build();
     }
 
-    @POST
-    public Response post(String requestBody, @Context UriInfo uriInfo){
-        String body = requestBody !=null? requestBody : "";
-        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder().path("yagshemash");
-        return Response
-                .created(uriBuilder.build())
-                .entity("Wawawiewaaaaa " + body)
-                .build();
-    }
+//    @POST
+//    public Response post(String requestBody, @Context UriInfo uriInfo){
+//        String body = requestBody !=null? requestBody : "";
+//        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder().path("yagshemash");
+//        return Response
+//                .created(uriBuilder.build())
+//                .entity("Wawawiewaaaaa " + body)
+//                .build();
+//    }
 }
