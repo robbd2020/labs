@@ -16,11 +16,11 @@ public class ContactDaoDB {
         return em.createNamedQuery("Contact.findAll", Contact.class).getResultList();
     }
 
-    public Contact getById(String id) {
+    public Contact getById(Long id) {
         return null;
     }
 
-    public Collection<Contact> get(String q) {
+    public Collection<Contact> get() {
         return null;
     }
 
@@ -28,11 +28,11 @@ public class ContactDaoDB {
         return false;
     }
 
-    public boolean remove(String id) {
+    public boolean remove(Long id) {
         return false;
     }
 
-    public boolean update(String id, Contact c) {
+    public boolean update(Long id, Contact c) {
         return false;
     }
 

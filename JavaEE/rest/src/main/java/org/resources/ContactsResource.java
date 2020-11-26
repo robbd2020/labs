@@ -2,6 +2,7 @@ package org.resources;
 
 import org.domain.Contact;
 import org.domain.ContactDao;
+import org.domain.ContactDaoDB;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -12,7 +13,7 @@ import javax.ws.rs.core.*;
 public class ContactsResource {
 
     @Inject
-    private ContactDao dao;
+    private ContactDaoDB dao;
 
     @GET
     public Response getAll(){

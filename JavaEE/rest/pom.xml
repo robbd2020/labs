@@ -47,6 +47,10 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
         <!-- 1. Arquillian JUnit integration framework (required at all times) -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
