@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
@@ -16,10 +14,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @XmlRootElement // necessary for sending xml response
 @Entity
-@NamedQuery(name = "Contact.findAll", query = "select c from Contact c")
-public class Contact {
-    @Id
-    Long id;
+@NamedQueries({
+        @NamedQuery(name = "Contact.findAll", query = "select c from Contact c"),
+        @NamedQuery(name = "Contact.findById", query = "select c from Contact c where c.id = :param")
+})
+public class Contact extends AbstractEntity{
+
     String firstName;
     String surname;
     String email;

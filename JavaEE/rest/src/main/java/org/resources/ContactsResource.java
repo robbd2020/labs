@@ -1,7 +1,6 @@
 package org.resources;
 
 import org.domain.Contact;
-import org.domain.ContactDao;
 import org.domain.ContactDaoDB;
 
 import javax.inject.Inject;
@@ -19,7 +18,7 @@ public class ContactsResource {
     public Response getAll(){
         return Response
                 .ok()
-                .entity(dao.getAll())
+                .entity(dao.getAllWithNamedQuery())
                 .build();
     }
 
@@ -34,14 +33,14 @@ public class ContactsResource {
 
     @POST
     public Contact post(Contact contact){
-        dao.add(contact);
+        dao.save(contact);
         return contact;
     }
 
     @Path("{id}")
     @DELETE
     public void delete(@PathParam("id") Long id){
-        dao.remove(id);
+        dao.removeById(id);
     }
 
     @Path("{id}")

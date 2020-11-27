@@ -2,6 +2,7 @@ package org.domain;
 
 import javax.ejb.Singleton;
 import javax.enterprise.inject.Alternative;
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,9 +12,9 @@ public class ContactDao {
     List<Contact> contacts = new ArrayList<>();
 
     public ContactDao() {
-        this.contacts.add(Contact.builder().id(1L).firstName("Frenkie").surname("Frenkenstijn").email("Frenk@minimuscles.com").build());
-        this.contacts.add(Contact.builder().id(2L).firstName("Eddy").surname("Valentijn").email("cupido@valentijn.com").build());
-        this.contacts.add(Contact.builder().id(3L).firstName("Rop").surname("Schekmann").email("roppie@hello.com").build());
+        this.contacts.add(Contact.builder().firstName("Frenkie").surname("Frenkenstijn").email("Frenk@minimuscles.com").build());
+        this.contacts.add(Contact.builder().firstName("Eddy").surname("Valentijn").email("cupido@valentijn.com").build());
+        this.contacts.add(Contact.builder().firstName("Rop").surname("Schekmann").email("roppie@hello.com").build());
     }
 
     public List<Contact> getAll() {
@@ -33,7 +34,7 @@ public class ContactDao {
 
     public Contact getById(long id) {
         for (Contact c : this.contacts) {
-            if (c.getId() == id)
+            if (c.getId().equals(id))
                 return c;
         } return null;
     }
@@ -48,7 +49,7 @@ public class ContactDao {
     }
 
     public long calculateId(){
-        Set<Long> ids = this.contacts.stream().map(c -> c.getId()).collect(Collectors.toSet());
+        Set<Serializable> ids = this.contacts.stream().map(c -> c.getId()).collect(Collectors.toSet());
         long newId = ids.size();
         while (ids.contains(newId)){
             newId++;
