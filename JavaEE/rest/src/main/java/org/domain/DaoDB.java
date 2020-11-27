@@ -8,12 +8,12 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public abstract class DaoDB<E extends AbstractEntity, I extends Serializable> { // E: type of entity; I: type of id of entity
+public abstract class DaoDB<E extends AbstractEntity> { // E: type of entity; I: type of id of entity
 
     @PersistenceContext
     private EntityManager em;
 
-    public E getById(I id) {
+    public E getById(long id) {
         E e = em.find(E(), id);
         if (e==null) {throw new BadRequestException("Opgegeven id is niet gevonden!");}
         return e;
@@ -28,11 +28,11 @@ public abstract class DaoDB<E extends AbstractEntity, I extends Serializable> { 
         return merged;
     }
 
-    public void removeById(I id){
+    public void removeById(long id){
         removeByObject(getById(id));
     }
 
-    public boolean update(I id, E e) {
+    public boolean update(long id, E e) {
         E entity = getById(id);
         e.setId(id);
         entity=e;

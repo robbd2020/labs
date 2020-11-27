@@ -14,12 +14,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public abstract class AbstractEntity<I extends Serializable> {
+public abstract class AbstractEntity {
 
     @Id
     @SequenceGenerator(name = "id_volgorde", sequenceName = "id_nummers", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_volgorde")
 
-    protected I id;
+    protected Long id;
 
 }

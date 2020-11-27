@@ -3,4 +3,4 @@ package org.domain;
 import javax.ejb.Stateless;
 
 @Stateless
-public class ContactDaoDB extends DaoDB<Contact, Long>{;}
+public class ContactDaoDB extends DaoDB<Contact>{;}
