@@ -16,6 +16,7 @@
         <module>marktplaats</module>
         <module>JavaEE</module>
         <module>JavaEE/rest</module>
+        <module>JavaEE/cdi</module>
     </modules>
 
     <dependencyManagement>
