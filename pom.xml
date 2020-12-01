@@ -17,6 +17,7 @@
         <module>JavaEE</module>
         <module>JavaEE/rest</module>
         <module>JavaEE/cdi</module>
+        <module>JavaEE/marktplaats2</module>
     </modules>
 
     <dependencyManagement>

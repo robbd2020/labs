@@ -4,8 +4,6 @@ import org.App;
 import org.domain.Account;
 import org.domain.Gebruiker;
 
-import static org.App.setActieveGebruiker;
-
 public class LoginService {
     public static Gebruiker logInGebruiker(String email, String ww){
         Account account = App.getGebDao().vindAccountMetEmailEnWw(email, ww);
@@ -13,7 +11,7 @@ public class LoginService {
     }
 
     public static void logUit(){
-        setActieveGebruiker(null);
+        App.setActieveGebruiker(null);
     }
 
 }

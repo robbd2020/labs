@@ -6,7 +6,6 @@ import javax.persistence.NoResultException;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
-import static org.App.setActieveGebruiker;
 import static org.services.LoginService.logInGebruiker;
 import static org.util.Printers.*;
 
@@ -26,7 +25,7 @@ public class InlogMenu implements Boundary {
                             String email = App.readLine();
                             print("Typ wachtwoord:");
                             String ww = App.readLine();
-                            setActieveGebruiker(logInGebruiker(email, ww));
+                            App.setActieveGebruiker(logInGebruiker(email, ww));
                             HoofdMenu.start();
                             break;
                         case "x":
