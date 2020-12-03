@@ -18,6 +18,7 @@
         <module>JavaEE/rest</module>
         <module>JavaEE/cdi</module>
         <module>JavaEE/marktplaats2</module>
+        <module>JavaEE/polymorphicJson</module>
     </modules>
 
     <dependencyManagement>

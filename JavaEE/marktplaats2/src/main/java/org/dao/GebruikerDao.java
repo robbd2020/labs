@@ -1,10 +1,12 @@
 package org.dao;
 
-import org.domain.Account;
+import lombok.NoArgsConstructor;
 import org.domain.Gebruiker;
 
-import javax.persistence.EntityManager;
+import javax.ejb.Stateless;
 
+@NoArgsConstructor
+@Stateless
 public class GebruikerDao extends Dao<Gebruiker> {
 
 //    public Gebruiker vindGebruikerVanWinkelwagen(Long winkelwagenid){

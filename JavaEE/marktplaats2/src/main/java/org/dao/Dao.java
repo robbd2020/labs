@@ -36,10 +36,10 @@ public abstract class Dao<E extends AbstracteEntiteit> extends KlassenaamPrinter
 
     @Override
     public boolean updateById(long id, E e) {
-        E entity = getById(id);
-        e.setId(id);
-        entity = e;
-        em.merge(entity);
+//        E entity = getById(id);
+//        e.setId(id);
+//        entity = e;
+        em.merge(e);
         return true;
     }
 

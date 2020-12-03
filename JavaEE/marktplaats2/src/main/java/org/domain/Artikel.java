@@ -1,16 +1,21 @@
 package org.domain;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Type;
-import org.util.LocalDateTimeAttribuutconverteerder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @SuperBuilder
 @AllArgsConstructor
@@ -25,7 +30,11 @@ import java.time.LocalDateTime;
         , @NamedQuery(name = "Artikel.vindAlle", query = "select distinct a from Artikel a")
 //@NamedQuery(name = "Artikel.zoekInAlleBeschikbare", query = "select a from Artikel a  where a.koper = null AND a.winkelwagen = null AND (a.naam LIKE ?1 OR a.beschrijving LIKE ?2)")
 })
-public class Artikel extends AbstracteEntiteit {
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
+@JsonSubTypes({
+        @Type(value = Product.class)
+})
+public abstract class Artikel extends AbstracteEntiteit {
 
     @NotNull
     @Size(max = 50)
@@ -45,16 +54,34 @@ public class Artikel extends AbstracteEntiteit {
     @ManyToOne
     protected Gebruiker aanbieder;
 
-    @NotNull
-    @Setter(value = AccessLevel.NONE)
-    @Builder.Default
-    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
-    protected LocalDateTime plaatsingsdatum = LocalDateTime.now();
+//    @Type(type = "string")
+//    @NotNull
+//    @Setter(value = AccessLevel.NONE)
+//    @Getter(value = AccessLevel.NONE)
+//    @Builder.Default
+//    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
+//    protected LocalDateTime plaatsingsdatum = LocalDateTime.now();
 
     @ManyToOne
     protected Gebruiker koper;
 
     public Artikel() {
     }
+
+    public Artikel(Long id, Gebruiker aanbieder, String beschrijving, Categorie categorie, Gebruiker koper, String naam, BigDecimal prijs)
+    { super(id);
+    this.id =id;
+    this.aanbieder =aanbieder;
+    this.beschrijving = beschrijving;
+    this.categorie=categorie;
+    this.koper=koper;
+    this.naam=naam;
+    this.prijs=prijs;
+
+    }
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern= "dd-MM-yyyy")
+//    public LocalDateTime getPlaatsingsdatum(){
+//        return this.plaatsingsdatum;
+//    }
 
 }

@@ -1,11 +1,11 @@
 package org.dao;
 
-import org.domain.Artikel;
+import lombok.NoArgsConstructor;
 import org.domain.Winkelwagen;
 
-import javax.persistence.EntityManager;
-import java.util.List;
+import javax.ejb.Stateless;
 
-public class WinkelwagenDao extends Dao<Winkelwagen>{
-
+@NoArgsConstructor
+@Stateless
+public class WinkelwagenDao extends Dao<Winkelwagen> {
 }

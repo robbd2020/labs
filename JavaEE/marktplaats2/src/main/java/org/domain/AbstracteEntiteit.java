@@ -1,13 +1,11 @@
 package org.domain;
 
-import lombok.Getter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Type;
 
@@ -19,6 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 public abstract class AbstracteEntiteit {
 
     @Id
@@ -26,5 +25,6 @@ public abstract class AbstracteEntiteit {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_volgorde")
 
     protected Long id;
+
 
 }

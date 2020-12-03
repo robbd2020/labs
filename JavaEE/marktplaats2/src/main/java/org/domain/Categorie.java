@@ -10,6 +10,7 @@ import org.hibernate.sql.Update;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 
@@ -22,6 +23,7 @@ import static javax.persistence.CascadeType.*;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper=false)
+@NamedQuery(name = "Categorie.vindAlle", query = "select c from Categorie c")
 public class Categorie extends AbstracteEntiteit {
 
     @NotNull @Size(max = 30)
