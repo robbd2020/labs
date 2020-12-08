@@ -3,16 +3,17 @@ package org.domain;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.util.LocalDateTimeAttribuutconverteerder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
@@ -51,11 +52,11 @@ public abstract class Artikel extends AbstracteEntiteit {
     @ManyToOne
     protected Gebruiker aanbieder;
 
-//    @NotNull
-////    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
-//    @Setter(value = AccessLevel.NONE)
-//    @Builder.Default
-//    protected LocalDateTime plaatsingsdatum = LocalDateTime.now();
+    @NotNull
+//    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
+    @Setter(value = AccessLevel.NONE)
+    @Builder.Default
+    protected LocalDate plaatsingsdatum = LocalDate.now();
 
     @ManyToOne
     protected Gebruiker koper;

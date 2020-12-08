@@ -15,10 +15,7 @@
         <module>database</module>
         <module>marktplaats</module>
         <module>JavaEE</module>
-        <module>JavaEE/rest</module>
-        <module>JavaEE/cdi</module>
-        <module>JavaEE/marktplaats2</module>
-        <module>JavaEE/polymorphicJson</module>
+        <module>marktplaats2</module>
     </modules>
 
     <dependencyManagement>

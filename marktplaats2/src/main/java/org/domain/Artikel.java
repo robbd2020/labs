@@ -1,21 +1,25 @@
 package org.domain;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+//import com.fasterxml.jackson.annotation.JsonSubTypes;
+//import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import org.util.LocalDateTimeAttribuutconverteerder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+//import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
+//import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
+//import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @SuperBuilder
 @AllArgsConstructor
@@ -30,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
         , @NamedQuery(name = "Artikel.vindAlle", query = "select distinct a from Artikel a")
 //@NamedQuery(name = "Artikel.zoekInAlleBeschikbare", query = "select a from Artikel a  where a.koper = null AND a.winkelwagen = null AND (a.naam LIKE ?1 OR a.beschrijving LIKE ?2)")
 })
-@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
-@JsonSubTypes({
-        @Type(value = Product.class)
-})
+//@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
+//@JsonSubTypes({
+//        @Type(value = Product.class)
+//})
 public abstract class Artikel extends AbstracteEntiteit {
 
     @NotNull
@@ -54,13 +58,13 @@ public abstract class Artikel extends AbstracteEntiteit {
     @ManyToOne
     protected Gebruiker aanbieder;
 
-//    @Type(type = "string")
-//    @NotNull
-//    @Setter(value = AccessLevel.NONE)
+    //    @Setter(value = AccessLevel.NONE)
 //    @Getter(value = AccessLevel.NONE)
-//    @Builder.Default
+    @Builder.Default
+//    @Transient
 //    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
-//    protected LocalDateTime plaatsingsdatum = LocalDateTime.now();
+    @NotNull
+    protected LocalDate plaatsingsdatum = LocalDate.now();
 
     @ManyToOne
     protected Gebruiker koper;
@@ -68,15 +72,15 @@ public abstract class Artikel extends AbstracteEntiteit {
     public Artikel() {
     }
 
-    public Artikel(Long id, Gebruiker aanbieder, String beschrijving, Categorie categorie, Gebruiker koper, String naam, BigDecimal prijs)
-    { super(id);
-    this.id =id;
-    this.aanbieder =aanbieder;
-    this.beschrijving = beschrijving;
-    this.categorie=categorie;
-    this.koper=koper;
-    this.naam=naam;
-    this.prijs=prijs;
+    public Artikel(Long id, Gebruiker aanbieder, String beschrijving, Categorie categorie, Gebruiker koper, String naam, BigDecimal prijs) {
+        super(id);
+        this.id = id;
+        this.aanbieder = aanbieder;
+        this.beschrijving = beschrijving;
+        this.categorie = categorie;
+        this.koper = koper;
+        this.naam = naam;
+        this.prijs = prijs;
 
     }
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern= "dd-MM-yyyy")

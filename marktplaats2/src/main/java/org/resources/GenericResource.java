@@ -3,7 +3,6 @@ package org.resources;
 import org.dao.IDaoDB;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 public abstract class GenericResource<E> {
@@ -17,11 +16,8 @@ public abstract class GenericResource<E> {
 
     @Path("{id}")
     @GET
-    public Response getById(@PathParam("id") Long id) {
-        return Response
-                .ok()
-                .entity(dao.getById(id))
-                .build();
+    public E getById(@PathParam("id") Long id) {
+        return dao.getById(id);
     }
 
     @POST

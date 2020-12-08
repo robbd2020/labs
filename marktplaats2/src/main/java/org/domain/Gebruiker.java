@@ -34,5 +34,6 @@ public class Gebruiker extends Account {
     private Winkelwagen winkelwagen = new Winkelwagen();
 
     public Gebruiker() {
+        winkelwagen = new Winkelwagen();
     }
 }
