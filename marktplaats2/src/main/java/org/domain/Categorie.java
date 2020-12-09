@@ -6,15 +6,12 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.sql.Update;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
-
-import java.lang.reflect.Member;
 
 import static javax.persistence.CascadeType.*;
 

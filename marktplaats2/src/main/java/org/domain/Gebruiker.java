@@ -7,13 +7,11 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.EAGER;
-import static org.domain.Bezorgwijze.VERZENDEN;
 
 @SuperBuilder
 @Entity
@@ -27,7 +25,7 @@ public class Gebruiker extends Account {
     @Builder.Default
     @JoinColumn(name = "gebruiker_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Bezorgwijze> ondersteundeBezorgwijzeLijst = new HashSet<>(Arrays.asList(VERZENDEN));
+    private Set<Bezorgwijze> ondersteundeBezorgwijzeLijst = new HashSet<>(/*Arrays.asList()*/);
 
     @OneToOne(cascade = {PERSIST, MERGE, REMOVE})
     @Builder.Default

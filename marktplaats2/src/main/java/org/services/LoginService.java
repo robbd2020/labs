@@ -1,7 +1,7 @@
 package org.services;
 
-import org.domain.Account;
-import org.domain.Gebruiker;
+//import org.domain.Account;
+//import org.domain.Gebruiker;
 
 //public class LoginService {
 //    public static Gebruiker logInGebruiker(String email, String ww){

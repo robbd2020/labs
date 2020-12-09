@@ -1,16 +1,11 @@
 package org;
 
-import org.domain.Artikel;
-import org.domain.Categorie;
-import org.domain.Gebruiker;
-import org.domain.Product;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
-import static org.domain.Bezorgwijze.*;
+//import org.domain.Artikel;
+//import org.domain.Categorie;
+//import org.domain.Gebruiker;
+//import org.domain.Product;
+//
+//import static org.domain.Bezorgwijze.*;
 //
 //public class VulDatabase {
 //

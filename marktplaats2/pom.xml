@@ -50,75 +50,118 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.11.1</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-        <!--            <artifactId>jackson-databind</artifactId>-->
-        <!--            <version>2.11.1</version>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; 1. Arquillian JUnit integration framework (required at all times) &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.jboss.arquillian.junit</groupId>-->
-        <!--            <artifactId>arquillian-junit-container</artifactId>-->
-        <!--            <version>1.6.0.Final</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; 2. Arquillian container adapter for the target container&ndash;&gt;-->
-        <!--        &lt;!&ndash; container can be either: embedded, managed or remote &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.openliberty.arquillian</groupId>-->
-        <!--            <artifactId>arquillian-liberty-managed</artifactId>-->
-        <!--            <version>1.0.6</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-core</artifactId>
+            <version>1.6.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>1.6.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+                <dependency>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-managed</artifactId>
+                    <version>1.0.6</version>
+                    <scope>test</scope>
+                </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.2.0</version>
+        </dependency>
 
     </dependencies>
 
-    <!--    <build>-->
-    <!--        <finalName>${project.artifactId}</finalName>-->
-    <!--        <plugins>-->
-    <!--            &lt;!&ndash; Run and verify ...IT.java-tests &ndash;&gt;-->
-    <!--            <plugin>-->
-    <!--                <groupId>org.apache.maven.plugins</groupId>-->
-    <!--                <artifactId>maven-failsafe-plugin</artifactId>-->
-    <!--            </plugin>-->
-    <!--            &lt;!&ndash; Download WebSphere Liberty to target directory and start it &ndash;&gt;-->
-    <!--            &lt;!&ndash; See test/resources/arquillian.xml and server.xml for configuration &ndash;&gt;-->
-    <!--            <plugin>-->
-    <!--                <groupId>net.wasdev.wlp.maven.plugins</groupId>-->
-    <!--                <artifactId>liberty-maven-plugin</artifactId>-->
-    <!--                <version>3.0.M1</version> &lt;!&ndash; plugin version &ndash;&gt;-->
-    <!--                <configuration>-->
-    <!--                    <assemblyArtifact>-->
-    <!--                        &lt;!&ndash; Liberty server to run test against &ndash;&gt;-->
-    <!--                        <groupId>io.openliberty</groupId>-->
-    <!--                        <artifactId>openliberty-runtime</artifactId>-->
-    <!--                        <version>20.0.0.12</version>-->
-    <!--                        <type>zip</type>-->
-    <!--                    </assemblyArtifact>-->
-    <!--                    <configFile>src/test/resources/server.xml</configFile> &lt;!&ndash; Used to run Arquillian&ndash;&gt;-->
-    <!--                </configuration>-->
-    <!--                <executions>-->
-    <!--                    &lt;!&ndash; Create server during package phase for running the application AND Arquillian &ndash;&gt;-->
-    <!--                    <execution>-->
-    <!--                        <phase>pre-integration-test</phase>-->
-    <!--                        <goals>-->
-    <!--                            <goal>create-server</goal>-->
-    <!--                        </goals>-->
-    <!--                    </execution>-->
-    <!--                    &lt;!&ndash; Used for running the application, not for Arquillian&ndash;&gt;-->
-    <!--                    <execution>-->
-    <!--                        <id>deploy-app</id>-->
-    <!--                        <goals>-->
-    <!--                            <goal>deploy</goal>-->
-    <!--                        </goals>-->
-    <!--                        <configuration>-->
-    <!--                            <appArchive>${project.basedir}\target\${project.build.finalName}.war</appArchive>-->
-    <!--                        </configuration>-->
-    <!--                    </execution>-->
-    <!--                </executions>-->
-    <!--            </plugin>-->
-    <!--        </plugins>-->
-    <!--    </build>-->
-
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- Run and verify ...IT.java-tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <!-- Download WebSphere Liberty to target directory and start it -->
+            <!-- See test/resources/arquillian.xml and server.xml for configuration -->
+            <plugin>
+                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>3.0.M1</version> <!-- plugin version -->
+                <configuration>
+                    <assemblyArtifact>
+                        <!-- Liberty server to run test against -->
+                        <groupId>io.openliberty</groupId>
+                        <artifactId>openliberty-runtime</artifactId>
+                        <version>20.0.0.12</version>
+                        <type>zip</type>
+                    </assemblyArtifact>
+                    <configFile>src/test/resources/server.xml</configFile> <!-- Used to run Arquillian-->
+                </configuration>
+                <executions>
+                    <!-- Create server during package phase for running the application AND Arquillian -->
+                    <execution>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>create-server</goal>
+                        </goals>
+                    </execution>
+                    <!-- Used for running the application, not for Arquillian-->
+                    <execution>
+                        <id>deploy-app</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <appArchive>${project.basedir}\target\${project.build.finalName}.war</appArchive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Copy jars to Liberty's /lib -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <!-- Copy database connectors during package phase for running the application AND Arquillian. -->
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>1.4.200</version>
+                            <type>jar</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/config/lib/
+                            </outputDirectory>
+                            <destFileName>h2.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>8.0.22</version>
+                            <type>jar</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/config/lib/
+                            </outputDirectory>
+                            <destFileName>mysql.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

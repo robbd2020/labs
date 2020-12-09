@@ -5,7 +5,7 @@ import org.dao.IDaoDB;
 import javax.ws.rs.*;
 import java.util.List;
 
-public abstract class GenericResource<E> {
+public abstract class GenericResource<E> implements JsonResource {
 
     protected IDaoDB<E> dao;
 

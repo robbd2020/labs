@@ -2,9 +2,7 @@ package org.resources;
 
 import org.dao.ArtikelDao;
 import org.dao.Dao;
-import org.dao.ProductDao;
 import org.domain.Artikel;
-import org.domain.Product;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

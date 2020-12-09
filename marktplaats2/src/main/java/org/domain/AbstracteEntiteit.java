@@ -6,11 +6,6 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
-import java.io.Serializable;
 
 @MappedSuperclass
 @SuperBuilder

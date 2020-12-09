@@ -7,7 +7,6 @@ import org.util.KlassenaamPrinter;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.BadRequestException;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public abstract class Dao<E extends AbstracteEntiteit> extends KlassenaamPrinter<E> implements IDaoDB<E>  {

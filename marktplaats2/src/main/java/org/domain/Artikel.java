@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import org.util.LocalDateTimeAttribuutconverteerder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -16,7 +15,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 //import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 //import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 //import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -74,11 +72,11 @@ public abstract class Artikel extends AbstracteEntiteit {
 
     public Artikel(Long id, Gebruiker aanbieder, String beschrijving, Categorie categorie, Gebruiker koper, String naam, BigDecimal prijs) {
         super(id);
-        this.id = id;
-        this.aanbieder = aanbieder;
-        this.beschrijving = beschrijving;
-        this.categorie = categorie;
-        this.koper = koper;
+//        this.id = id;
+//        this.aanbieder = aanbieder;
+//        this.beschrijving = beschrijving;
+//        this.categorie = categorie;
+//        this.koper = koper;
         this.naam = naam;
         this.prijs = prijs;
 

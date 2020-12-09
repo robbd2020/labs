@@ -1,6 +1,5 @@
 package org.dao;
 
-import org.domain.Artikel;
 import org.domain.Product;
 
 import javax.ejb.Stateless;
@@ -8,7 +7,8 @@ import java.util.List;
 
 @Stateless
 public class ProductDao extends Dao<Product> {
-    public ProductDao() {}
+    public ProductDao() {
+    }
 
     public List<Product> vindAlleBeschikbare() {
         return em.createNamedQuery(printKlasseNaam() + ".vindAlleBeschikbare", T()).getResultList();
