@@ -1,10 +1,6 @@
 package org.resources;
 
-import org.App;
-import org.dao.CategorieDao;
-import org.dao.Dao;
-import org.dao.IDaoDB;
-import org.dao.ProductDao;
+import org.example.marktplaats2.App;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;

@@ -6,12 +6,12 @@
              version="2.2">
 
     <persistence-unit name="marktplaats-h2">
-        <class>org.domain.Artikel</class>
-        <class>org.domain.Bezorgwijze</class>
-        <class>org.domain.Categorie</class>
-        <class>org.domain.Gebruiker</class>
-        <class>org.domain.Product</class>
-        <class>org.domain.Winkelwagen</class>
+        <class>org.example.marktplaats2.domain.Artikel</class>
+        <class>org.example.marktplaats2.domain.Bezorgwijze</class>
+        <class>org.example.marktplaats2.domain.Categorie</class>
+        <class>org.example.marktplaats2.domain.Gebruiker</class>
+        <class>org.example.marktplaats2.domain.Product</class>
+        <class>org.example.marktplaats2.domain.Winkelwagen</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>

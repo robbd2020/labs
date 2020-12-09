@@ -15,7 +15,7 @@
 //import java.util.HashSet;
 //import java.util.List;
 //
-//import static org.App.*;
+//import static org.example.marktplaats2.App.*;
 //import static org.assertj.core.api.Assertions.assertThat;
 //import static org.domain.Bezorgwijze.*;
 //import static org.junit.jupiter.api.Assertions.*;
