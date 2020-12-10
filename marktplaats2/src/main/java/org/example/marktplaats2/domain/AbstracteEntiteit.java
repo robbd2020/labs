@@ -12,7 +12,6 @@ import lombok.Getter;
 @NoArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
 public abstract class AbstracteEntiteit {
 
     @Id

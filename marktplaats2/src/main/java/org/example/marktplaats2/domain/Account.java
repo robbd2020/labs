@@ -2,6 +2,7 @@ package org.example.marktplaats2.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.validation.constraints.*;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor
 @SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "Account.vindAccountMetEmailAdresEnWw", query = "SELECT a FROM Account a WHERE a.emailadres = :email AND a.wachtwoord =:wachtwoord")
@@ -20,17 +22,24 @@ public abstract class Account extends AbstracteEntiteit{
 
 
     protected String voornaam;
+
     @NotNull
     protected String achternaam;
+
     @NotNull @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     protected String emailadres;
+
     @NotNull @Size(min = 8, max = 50)
     protected String wachtwoord;
+
     protected String postcode;
+
     protected String woonplaats;
+
     protected int huisnummer;
+
     protected String huisnummertoevoeging;
+
     protected Boolean isActief;
 
-    public Account() {}
 }

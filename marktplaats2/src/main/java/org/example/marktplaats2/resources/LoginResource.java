@@ -7,11 +7,9 @@ import org.example.marktplaats2.domain.Login;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 
-@Produces( "application/json" )
 @Path("/login")
-public class LoginResource {
+public class LoginResource implements JsonResource {
 
     @Inject
     private GebruikerDao dao;

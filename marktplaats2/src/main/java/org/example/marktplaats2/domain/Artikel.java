@@ -3,10 +3,10 @@ package org.example.marktplaats2.domain;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
 //import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -20,22 +20,15 @@ import java.time.LocalDate;
 //import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @SuperBuilder
-@AllArgsConstructor
 @Data
 @Entity
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
-//        @NamedQuery(name = "Artikel.vindAlleBeschikbare", query = "select distinct a from Artikel a left join fetch a.categorie b left join fetch b.categorie c left join fetch c.categorie left join fetch a.koper koper left join fetch koper.ondersteundeBezorgwijzeLijst left join fetch koper.winkelwagen left join koper.ondersteundeBezorgwijzeLijst left join fetch a.aanbieder aanbieder left join aanbieder.ondersteundeBezorgwijzeLijst left join fetch aanbieder.winkelwagen left join fetch a.winkelwagen left join a.bezorgwijze where a.koper = null AND a.winkelwagen = null")
-@NamedQuery(name = "Artikel.vindAlleBeschikbare", query = "select a from Artikel a where a.koper is null")
-//        , @NamedQuery(name = "Artikel.zoekInAlleBeschikbare", query = "select distinct a from Artikel a left join fetch a.categorie b left join fetch b.categorie c left join fetch c.categorie left join fetch a.koper koper left join fetch koper.ondersteundeBezorgwijzeLijst left join fetch koper.winkelwagen left join koper.ondersteundeBezorgwijzeLijst left join fetch a.aanbieder aanbieder left join aanbieder.ondersteundeBezorgwijzeLijst left join fetch aanbieder.winkelwagen left join fetch a.winkelwagen left join a.bezorgwijze where a.koper = null AND a.winkelwagen = null AND (a.naam LIKE ?1 OR a.beschrijving LIKE ?2)")
-        , @NamedQuery(name = "Artikel.vindAlle", query = "select distinct a from Artikel a")
-//@NamedQuery(name = "Artikel.zoekInAlleBeschikbare", query = "select a from Artikel a  where a.koper = null AND a.winkelwagen = null AND (a.naam LIKE ?1 OR a.beschrijving LIKE ?2)")
+        @NamedQuery(name = "Artikel.vindAlleBeschikbare", query = "select a from Artikel a where a.koper is null"),
+        @NamedQuery(name = "Artikel.vindAlle", query = "select distinct a from Artikel a")
 })
-//@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
-//@JsonSubTypes({
-//        @Type(value = Product.class)
-//})
 public abstract class Artikel extends AbstracteEntiteit {
 
     @NotNull
@@ -56,34 +49,10 @@ public abstract class Artikel extends AbstracteEntiteit {
     @ManyToOne
     protected Gebruiker aanbieder;
 
-    //    @Setter(value = AccessLevel.NONE)
-//    @Getter(value = AccessLevel.NONE)
     @Builder.Default
-//    @Transient
-//    @Convert(converter = LocalDateTimeAttribuutconverteerder.class)
     @NotNull
     protected LocalDate plaatsingsdatum = LocalDate.now();
 
     @ManyToOne
     protected Gebruiker koper;
-
-    public Artikel() {
-    }
-
-    public Artikel(Long id, Gebruiker aanbieder, String beschrijving, Categorie categorie, Gebruiker koper, String naam, BigDecimal prijs) {
-        super(id);
-//        this.id = id;
-//        this.aanbieder = aanbieder;
-//        this.beschrijving = beschrijving;
-//        this.categorie = categorie;
-//        this.koper = koper;
-        this.naam = naam;
-        this.prijs = prijs;
-
-    }
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern= "dd-MM-yyyy")
-//    public LocalDateTime getPlaatsingsdatum(){
-//        return this.plaatsingsdatum;
-//    }
-
 }

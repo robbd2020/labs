@@ -3,33 +3,28 @@ package org.resources;
 import org.example.marktplaats2.App;
 import org.example.marktplaats2.domain.Categorie;
 import org.example.marktplaats2.domain.Gebruiker;
-import org.hamcrest.CoreMatchers;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.jboss.shrinkwrap.api.Archive;
 
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import static javax.ws.rs.client.Entity.entity;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.example.marktplaats2.domain.Bezorgwijze.VERZENDEN;
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -54,7 +49,7 @@ public class MarktplaatsApiIT {
     }
 
     @Deployment
-    public static Archive<?> createDeployment(){
+    public static Archive<?> createDeployment() {
         WebArchive archive = ShrinkWrap.create(WebArchive.class, "ProductResourceIT.war")
                 .addPackages(true, App.class.getPackage()) // dont forget!
                 .addAsWebInfResource("test-beans.xml", "beans.xml")
@@ -65,14 +60,13 @@ public class MarktplaatsApiIT {
     }
 
     @Test
-    public void wanneerCategorieIsGepostKanHetWordenVerkregen(){
+    public void wanneerCategorieIsGepostKanHetWordenVerkregen() {
         Client http = ClientBuilder.newClient();
         Categorie drank = new Categorie("Drank");
 
-        String postedContact = http
+        http
                 .target(categorieResource)
                 .request().post(entity(drank, APPLICATION_JSON), String.class);
-
 
         String alleCategorieen = http
                 .target(categorieResource)
@@ -82,19 +76,19 @@ public class MarktplaatsApiIT {
     }
 
     @Test
-    public void wanneerNietBestaandeCategorieWordtOpgevraagdIsDeResponsStatus400(){
+    public void wanneerNietBestaandeCategorieWordtOpgevraagdIsDeResponsStatus400() {
 
         Client http = ClientBuilder.newClient();
 
         Response response = http
-                .target(categorieResource+"/"+987654321)
+                .target(categorieResource + "/" + 987654321)
                 .request().get();
 
         assertThat(response.getStatus(), is(400));
     }
 
     @Test
-    public void wanneerCategorieIsGepostKanHetWordenVerwijderd(){
+    public void wanneerCategorieIsGepostKanHetWordenVerwijderd() {
 
         Client http = ClientBuilder.newClient();
         Categorie autos = new Categorie("Autos");
@@ -110,7 +104,7 @@ public class MarktplaatsApiIT {
         assertThat(alleCategorieen, containsString("categorienaam\":\"Autos"));
 
         http
-                .target(categorieResource+"/"+postedCategorie.getId())
+                .target(categorieResource + "/" + postedCategorie.getId())
                 .request().delete();
 
         alleCategorieen = http
@@ -122,7 +116,7 @@ public class MarktplaatsApiIT {
     }
 
     @Test
-    public void wanneerCategorieIsGepostKanHetWordenAangepast(){
+    public void wanneerCategorieIsGepostKanHetWordenAangepast() {
 
         Client http = ClientBuilder.newClient();
         Categorie autos = new Categorie("Autos");
@@ -139,7 +133,7 @@ public class MarktplaatsApiIT {
 
         postedCategorie.setCategorienaam("Wagens");
         http
-                .target(categorieResource+"/"+postedCategorie.getId())
+                .target(categorieResource + "/" + postedCategorie.getId())
                 .request().put(entity(postedCategorie, APPLICATION_JSON), Categorie.class);
 
         alleCategorieen = http
@@ -152,14 +146,13 @@ public class MarktplaatsApiIT {
     }
 
     @Test
-    public void wanneerGebruikerIsGepostKanHetWordenVerkregen(){
+    public void wanneerGebruikerIsGepostKanHetWordenVerkregen() {
         Client http = ClientBuilder.newClient();
         Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("X").emailadres("mr@mrx.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
 
-        Gebruiker postedGebruiker = http
+        http
                 .target(gebruikersResource)
                 .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
-
 
         String alleGebruikers = http
                 .target(gebruikersResource)
@@ -171,14 +164,13 @@ public class MarktplaatsApiIT {
     }
 
     @Test
-    public void wanneerGebruikerIsGepostKanHetWordenVerwijderd(){
+    public void wanneerGebruikerIsGepostKanHetWordenVerwijderd() {
         Client http = ClientBuilder.newClient();
         Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("X").emailadres("mr@bladiebla.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
 
         Gebruiker postedGebruiker = http
                 .target(gebruikersResource)
                 .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
-
 
         String alleGebruikers = http
                 .target(gebruikersResource)
@@ -187,26 +179,25 @@ public class MarktplaatsApiIT {
         assertThat(alleGebruikers, containsString("emailadres\":\"mr@bladiebla.info"));
 
         http
-                .target(gebruikersResource+"/"+postedGebruiker.getId())
+                .target(gebruikersResource + "/" + postedGebruiker.getId())
                 .request().delete();
 
         alleGebruikers = http
                 .target(gebruikersResource)
                 .request().get(String.class);
 
-        assertFalse(gebruikersResource.contains("emailadres\":\"mr@bladiebla.info"));
+        assertFalse(alleGebruikers.contains("emailadres\":\"mr@bladiebla.info"));
 
     }
 
     @Test
-    public void wanneerGebruikerIsGepostKanHetWordenAangepast(){
+    public void wanneerGebruikerIsGepostKanHetWordenAangepast() {
         Client http = ClientBuilder.newClient();
         Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("Naaktgeboren").emailadres("mr@testuser.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
 
         Gebruiker postedGebruiker = http
                 .target(gebruikersResource)
                 .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
-
 
         String alleGebruikers = http
                 .target(gebruikersResource)
@@ -217,7 +208,7 @@ public class MarktplaatsApiIT {
 
         postedGebruiker.setAchternaam("Kluivert");
         http
-                .target(gebruikersResource+"/"+postedGebruiker.getId())
+                .target(gebruikersResource + "/" + postedGebruiker.getId())
                 .request().put(entity(postedGebruiker, APPLICATION_JSON));
 
         alleGebruikers = http

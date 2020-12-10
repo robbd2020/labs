@@ -11,7 +11,7 @@ public interface IDaoDB<E>{
 
     void removeById(long id);
 
-    boolean updateById(long id, E e);
+    E updateById(long id, E e);
 
     List<E> getAllWithNamedQuery();
 

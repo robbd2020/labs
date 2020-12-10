@@ -1,14 +1,6 @@
 package org.example.marktplaats2.domain;
 
-//import com.fasterxml.jackson.annotation.JsonCreator;
-//import com.fasterxml.jackson.annotation.JsonProperty;
-//import com.fasterxml.jackson.annotation.JsonSubTypes;
-//import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,14 +13,10 @@ import java.util.Set;
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.EAGER;
 
-//@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
-//@JsonSubTypes({
-////            @JsonSubTypes.Type(value = Product.class)
-//})
 @SuperBuilder
-@AllArgsConstructor
 @Entity
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
@@ -45,27 +33,9 @@ public class Product extends Artikel {
     @JoinColumn(name = "product_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Bezorgwijze> bezorgwijze = new HashSet<>(/*Arrays.asList(Bezorgwijze.VERZENDEN)*/);
+
     @ManyToOne(cascade = {PERSIST, MERGE, REMOVE})
     private Winkelwagen winkelwagen;
 
-    public Product() {
-    }
 
-//    @JsonCreator
-//    public Product(
-//
-//            @JsonProperty("id") Long id,
-//            @JsonProperty("gebruiker") Gebruiker aanbieder,
-//            @JsonProperty("beschrijving") String beschrijving,
-//            @JsonProperty("categorie") Categorie categorie,
-//            Gebruiker koper,
-//            String naam,
-//            BigDecimal prijs,
-//            Set<Bezorgwijze> bezorgwijze,
-//            Winkelwagen winkelwagen
-//    ) {
-//        super(id, aanbieder, beschrijving, categorie, koper, naam, prijs);
-//        this.bezorgwijze = bezorgwijze;
-//        this.winkelwagen = winkelwagen;
-//    }
 }
