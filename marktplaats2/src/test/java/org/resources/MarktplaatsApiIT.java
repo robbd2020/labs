@@ -3,6 +3,7 @@ package org.resources;
 import org.example.marktplaats2.App;
 import org.example.marktplaats2.domain.Categorie;
 import org.example.marktplaats2.domain.Gebruiker;
+import org.example.marktplaats2.domain.Login;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -26,8 +27,7 @@ import static org.example.marktplaats2.domain.Bezorgwijze.VERZENDEN;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class MarktplaatsApiIT {
@@ -40,12 +40,15 @@ public class MarktplaatsApiIT {
     private String categorieUri = "resources/categorieen";
     private String gebruikersResource;
     private String gebruikerUri = "resources/gebruikers";
+    private String loginResource;
+    private String loginUri = "resources/login";
 
     @Before
     public void setup() {
         categorieResource = deploymentURL + categorieUri;
         productenResource = deploymentURL + productenUri;
         gebruikersResource = deploymentURL + gebruikerUri;
+        loginResource = deploymentURL + loginUri;
     }
 
     @Deployment
@@ -219,5 +222,28 @@ public class MarktplaatsApiIT {
         assertTrue(alleGebruikers.contains("achternaam\":\"Kluivert"));
 
     }
+
+    @Test
+    public void wanneerGebruikerIsAangemaaktKanDezeInloggen() {
+        Client http = ClientBuilder.newClient();
+        Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("Naaktgeboren").emailadres("mr@naaktgeboren.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
+
+        Gebruiker postedGebruiker = http
+                .target(gebruikersResource)
+                .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
+
+        String alleGebruikers = http
+                .target(gebruikersResource)
+                .request().get(String.class);
+
+        assertThat(alleGebruikers, containsString("emailadres\":\"mr@naaktgeboren.info"));
+
+        Login login = Login.builder().email("mr@naaktgeboren.info").wachtwoord("xxxxxxxxx").build();
+        Gebruiker target = http.target(loginResource).request().post(entity(login, APPLICATION_JSON), Gebruiker.class);
+
+        assertEquals(target, postedGebruiker);
+
+    }
+
 
 }
