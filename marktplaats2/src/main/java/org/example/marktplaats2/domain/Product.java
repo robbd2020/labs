@@ -33,7 +33,8 @@ import static javax.persistence.FetchType.EAGER;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
         @NamedQuery(name = "Product.vindAlle", query = "select p from Product p")
-        , @NamedQuery(name = "Product.zoekInAlleBeschikbare", query = "select distinct a from Product a left join fetch a.categorie b left join fetch b.categorie c left join fetch c.categorie left join fetch a.koper koper left join fetch koper.ondersteundeBezorgwijzeLijst left join fetch koper.winkelwagen left join koper.ondersteundeBezorgwijzeLijst left join fetch a.aanbieder aanbieder left join aanbieder.ondersteundeBezorgwijzeLijst left join fetch aanbieder.winkelwagen left join fetch a.winkelwagen left join a.bezorgwijze where a.koper = null AND a.winkelwagen = null AND (a.naam LIKE ?1 OR a.beschrijving LIKE ?2)")
+        ,@NamedQuery(name = "Product.vindAlleBeschikbare", query = "select p from Product p where p.koper is null and p.winkelwagen is null")
+        , @NamedQuery(name = "Product.zoekInAlleBeschikbare", query = "select distinct p from Product p where p.koper is null AND p.winkelwagen is null AND (p.naam LIKE ?1 OR p.beschrijving LIKE ?2)")
 })
 public class Product extends Artikel {
 
