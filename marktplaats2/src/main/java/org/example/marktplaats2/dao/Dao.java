@@ -23,8 +23,9 @@ public abstract class Dao<E extends AbstracteEntiteit> extends KlassenaamPrinter
     }
 
     @Override
-    public void insert(E e) {
+    public E insert(E e) {
         em.persist(e);
+        return e;
     }
 
     public E update(E e) {

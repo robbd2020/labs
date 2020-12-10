@@ -6,7 +6,7 @@ public interface IDaoDB<E>{
 
     E getById(long id);
 
-    void insert(E e);
+    E insert(E e);
 
 
     void removeById(long id);
