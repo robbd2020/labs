@@ -4,6 +4,7 @@ import org.example.marktplaats2.App;
 import org.example.marktplaats2.domain.Categorie;
 import org.example.marktplaats2.domain.Gebruiker;
 import org.example.marktplaats2.domain.Login;
+import org.example.marktplaats2.domain.Product;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -69,7 +71,7 @@ public class MarktplaatsApiIT {
 
         http
                 .target(categorieResource)
-                .request().post(entity(drank, APPLICATION_JSON), String.class);
+                .request().post(entity(drank, APPLICATION_JSON));
 
         String alleCategorieen = http
                 .target(categorieResource)
@@ -135,9 +137,10 @@ public class MarktplaatsApiIT {
         assertThat(alleCategorieen, containsString("categorienaam\":\"Autos"));
 
         postedCategorie.setCategorienaam("Wagens");
+
         http
                 .target(categorieResource + "/" + postedCategorie.getId())
-                .request().put(entity(postedCategorie, APPLICATION_JSON), Categorie.class);
+                .request().put(entity(postedCategorie, APPLICATION_JSON));
 
         alleCategorieen = http
                 .target(categorieResource)
@@ -155,7 +158,7 @@ public class MarktplaatsApiIT {
 
         http
                 .target(gebruikersResource)
-                .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
+                .request().post(entity(misterX, APPLICATION_JSON));
 
         String alleGebruikers = http
                 .target(gebruikersResource)
@@ -245,5 +248,154 @@ public class MarktplaatsApiIT {
 
     }
 
+    @Test
+    public void wanneerProductIsGepostKanHetWordenVerkregen() {
+        Client http = ClientBuilder.newClient();
+        Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("X").emailadres("productaanmaken@test.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
 
+        Gebruiker aanbieder = http
+                .target(gebruikersResource)
+                .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
+
+        String alleGebruikers = http
+                .target(gebruikersResource)
+                .request().get(String.class);
+
+        assertThat(alleGebruikers, containsString("emailadres\":\"productaanmaken@test.info"));
+
+        Categorie bier = new Categorie("Bier");
+
+        Categorie geposteCategorie = http
+                .target(categorieResource)
+                .request().post(entity(bier, APPLICATION_JSON), Categorie.class);
+
+        String alleCategorieen = http
+                .target(categorieResource)
+                .request().get(String.class);
+
+        assertThat(alleCategorieen, containsString("categorienaam\":\"Bier"));
+
+        Product ipa = Product.builder().aanbieder(aanbieder).categorie(geposteCategorie).naam("Heerlijke IPA")
+                .beschrijving("Zelfgebrouwen in een groot vat").bezorgwijze(new HashSet<>(Arrays.asList(VERZENDEN)))
+                .prijs(new BigDecimal("5.95")).build();
+
+        http
+                .target(productenResource)
+                .request().post(entity(ipa, APPLICATION_JSON));
+
+        String alleProducten = http
+                .target(productenResource)
+                .request().get(String.class);
+        assertThat(alleProducten, containsString("categorienaam\":\"Bier"));
+        assertThat(alleProducten, containsString("beschrijving\":\"Zelfgebrouwen in een groot vat"));
+        assertThat(alleProducten, containsString("naam\":\"Heerlijke IPA"));
+
+    }
+
+    @Test
+    public void wanneerProductIsGepostKanHetWordenVerwijderd() {
+        Client http = ClientBuilder.newClient();
+        Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("X").emailadres("productaanmaken@test2.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
+
+        Gebruiker aanbieder = http
+                .target(gebruikersResource)
+                .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
+
+        String alleGebruikers = http
+                .target(gebruikersResource)
+                .request().get(String.class);
+
+        assertThat(alleGebruikers, containsString("emailadres\":\"productaanmaken@test2.info"));
+
+        Categorie bier = new Categorie("Bieren");
+
+        Categorie geposteCategorie = http
+                .target(categorieResource)
+                .request().post(entity(bier, APPLICATION_JSON), Categorie.class);
+
+        String alleCategorieen = http
+                .target(categorieResource)
+                .request().get(String.class);
+
+        assertThat(alleCategorieen, containsString("categorienaam\":\"Bieren"));
+
+        Product ipa = Product.builder().aanbieder(aanbieder).categorie(geposteCategorie).naam("Heerlijke IPA")
+                .beschrijving("Gebrouwen volgens authentiek geheim recept").bezorgwijze(new HashSet<>(Arrays.asList(VERZENDEN)))
+                .prijs(new BigDecimal("5.95")).build();
+
+        Product gepostProduct = http
+                .target(productenResource)
+                .request().post(entity(ipa, APPLICATION_JSON), Product.class);
+
+        String alleProducten = http
+                .target(productenResource)
+                .request().get(String.class);
+
+        assertThat(alleProducten, containsString("beschrijving\":\"Gebrouwen volgens authentiek geheim recept"));
+
+        http.target(productenResource+"/"+gepostProduct.getId()).request().delete();
+
+        alleProducten = http
+                .target(productenResource)
+                .request().get(String.class);
+
+        assertFalse(alleProducten.contains("beschrijving\":\"Gebrouwen volgens authentiek geheim recept"));
+
+    }
+
+    @Test
+    public void wanneerProductIsGepostKanHetWordenAangepast() {
+        Client http = ClientBuilder.newClient();
+        Gebruiker misterX = Gebruiker.builder().voornaam("Mr").achternaam("X").emailadres("productaanmaken@test3.info").wachtwoord("xxxxxxxxx").ondersteundeBezorgwijzeLijst(new HashSet<>(Arrays.asList(VERZENDEN))).build();
+
+        Gebruiker aanbieder = http
+                .target(gebruikersResource)
+                .request().post(entity(misterX, APPLICATION_JSON), Gebruiker.class);
+
+        String alleGebruikers = http
+                .target(gebruikersResource)
+                .request().get(String.class);
+
+        assertThat(alleGebruikers, containsString("emailadres\":\"productaanmaken@test3.info"));
+
+        Categorie bier = new Categorie("Homebrew");
+
+        Categorie geposteCategorie = http
+                .target(categorieResource)
+                .request().post(entity(bier, APPLICATION_JSON), Categorie.class);
+
+        String alleCategorieen = http
+                .target(categorieResource)
+                .request().get(String.class);
+
+        assertThat(alleCategorieen, containsString("categorienaam\":\"Homebrew"));
+
+        Product ipa = Product.builder().aanbieder(aanbieder).categorie(geposteCategorie).naam("Heerlijke IPA")
+                .beschrijving("Mag weg voor een zacht prijsje. Moest er zelf van kotsen").bezorgwijze(new HashSet<>(Arrays.asList(VERZENDEN)))
+                .prijs(new BigDecimal("5.95")).build();
+
+        Product gepostProduct = http
+                .target(productenResource)
+                .request().post(entity(ipa, APPLICATION_JSON), Product.class);
+
+        String alleProducten = http
+                .target(productenResource)
+                .request().get(String.class);
+
+        assertThat(alleProducten, containsString("beschrijving\":\"Mag weg voor een zacht prijsje. Moest er zelf van kotsen"));
+
+        gepostProduct.setBeschrijving("Wordt geleverd in tweedehands Grolsch beugelfles");
+        http.target(productenResource+"/"+gepostProduct.getId()).request().put(entity(gepostProduct, APPLICATION_JSON));
+
+        alleProducten = http
+                .target(productenResource)
+                .request().get(String.class);
+
+        assertFalse(alleProducten.contains("beschrijving\":\"Mag weg voor een zacht prijsje. Moest er zelf van kotsen"));
+        assertTrue(alleProducten.contains("beschrijving\":\"Wordt geleverd in tweedehands Grolsch beugelfles"));
+
+    }
 }
+
+
+
