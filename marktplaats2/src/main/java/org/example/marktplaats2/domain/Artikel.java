@@ -38,7 +38,7 @@ public abstract class Artikel extends AbstracteEntiteit {
     @Size(max = 250)
     protected String beschrijving;
     @NotNull
-    @Max(1000)
+    @Max(2500)
     protected BigDecimal prijs;
 
     @NotNull
