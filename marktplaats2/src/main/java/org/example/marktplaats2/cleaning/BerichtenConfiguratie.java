@@ -9,7 +9,7 @@ import javax.jms.Queue;
         name = "java:app/cleaningQueue", // JNDI name of the destination resource being defined.
         interfaceName = "javax.jms.Queue",
         destinationName = "cleaningQueue")
-public class MessengerConfig {
+public class BerichtenConfiguratie {
 
     @Resource(lookup = "java:app/cleaningQueue") // the JNDI name from JMSDestinationDefinition
     private Queue cleaningQueue;

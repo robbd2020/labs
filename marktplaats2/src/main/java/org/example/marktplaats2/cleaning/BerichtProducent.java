@@ -11,7 +11,7 @@ import javax.jms.Queue;
 import static org.example.marktplaats2.util.DateUtils.TWENTY_THREE_HOURS_IN_MS;
 
 @Stateless
-public class Producer {
+public class BerichtProducent {
 
     @Inject // produced by MessengerConfig
     private Queue queue;

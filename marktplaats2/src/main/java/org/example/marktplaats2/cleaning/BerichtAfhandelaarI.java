@@ -1,6 +1,6 @@
 package org.example.marktplaats2.cleaning;
 
-public interface MessageHandler {
+public interface BerichtAfhandelaarI {
     void verwerkBericht(String text);
 }
 

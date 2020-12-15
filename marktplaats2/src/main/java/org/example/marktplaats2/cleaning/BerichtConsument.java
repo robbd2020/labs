@@ -14,10 +14,10 @@ import javax.jms.MessageListener;
                 @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:app/cleaningQueue")
         }
 )
-public class Consumer implements MessageListener {
+public class BerichtConsument implements MessageListener {
 
     @Inject
-    private MessageHandler handler;
+    private BerichtAfhandelaarI handler;
 
     @Override
     public void onMessage(Message message) {

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import static org.example.marktplaats2.util.DateUtils.MAX_LEEFTIJD_ADVERTENTIE_IN_DAGEN;
 
-public class BerichtAfhandelaarProductie implements MessageHandler {
+public class BerichtAfhandelaar implements BerichtAfhandelaarI {
     @Inject
     private SchoonmaakSet schoonmaakSet;
 
