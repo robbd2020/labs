@@ -1,8 +1,5 @@
 package org.example.marktplaats2.domain;
 
-//import com.fasterxml.jackson.annotation.JsonSubTypes;
-//import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,9 +12,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-//import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
-//import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
-//import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @SuperBuilder
 @Data

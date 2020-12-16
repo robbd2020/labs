@@ -8,13 +8,11 @@ public interface IDaoDB<E>{
 
     E insert(E e);
 
-
     void removeById(long id);
 
     E updateById(long id, E e);
 
     List<E> getAllWithNamedQuery();
-
 
 }
 

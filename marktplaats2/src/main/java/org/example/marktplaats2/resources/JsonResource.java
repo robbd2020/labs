@@ -9,5 +9,3 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Consumes(APPLICATION_JSON)
 public interface JsonResource {
 }
-
-

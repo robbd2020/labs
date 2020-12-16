@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/gebruikers")
-@Produces(MediaType.APPLICATION_JSON) // Always send JSON
+@Produces(MediaType.APPLICATION_JSON) // stuur altijd JSON
 public class GebruikerResource extends GenericResource<Gebruiker> {
 
     @Inject

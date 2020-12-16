@@ -13,13 +13,14 @@ import static org.example.marktplaats2.util.DateUtils.TWENTY_THREE_HOURS_IN_MS;
 @Stateless
 public class BerichtProducent {
 
-    @Inject // produced by MessengerConfig
+    @Inject // geproduceerd door BerichtenConfiguratie
     private Queue queue;
 
     @Inject
     private JMSContext context;
 
-    @Schedule(hour = "*", minute = "*", second = "10", persistent = false)
+    //    @Schedule(hour = "*", minute = "*", second = "10", persistent = false)
+    @Schedule(hour = "3", minute = "15", persistent = false)
     public void stuurOudeAdvertentiesOpschonenStartenBericht() {
         String message = "productlijstopruimen+";
         verstuurBericht(message);

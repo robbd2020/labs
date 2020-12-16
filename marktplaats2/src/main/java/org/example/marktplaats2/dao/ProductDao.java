@@ -10,7 +10,6 @@ import java.util.List;
 @Stateless
 public class ProductDao extends Dao<Product> {
 
-
     public List<Product> vindAlleBeschikbare() {
         return em.createNamedQuery(printKlasseNaam() + ".vindAlleBeschikbare", T()).getResultList();
     }
@@ -21,7 +20,4 @@ public class ProductDao extends Dao<Product> {
                 .setParameter(2, "%".concat(zoekterm).concat("%"))
                 .getResultList();
     }
-
 }
-
-

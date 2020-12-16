@@ -22,6 +22,4 @@ public class BerichtAfhandelaar implements BerichtAfhandelaarI {
                 break;
         }
     }
-
 }
-

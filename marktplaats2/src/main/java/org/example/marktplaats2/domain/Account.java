@@ -20,7 +20,6 @@ import javax.validation.constraints.*;
 @NamedQuery(name = "Account.vindAccountMetEmailAdresEnWw", query = "SELECT a FROM Account a WHERE a.emailadres = :email AND a.wachtwoord =:wachtwoord")
 public abstract class Account extends AbstracteEntiteit{
 
-
     protected String voornaam;
 
     @NotNull

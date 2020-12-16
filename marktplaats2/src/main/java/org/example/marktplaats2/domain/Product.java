@@ -1,6 +1,9 @@
 package org.example.marktplaats2.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,7 +24,7 @@ import static javax.persistence.FetchType.EAGER;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
         @NamedQuery(name = "Product.vindAlle", query = "select p from Product p")
-        ,@NamedQuery(name = "Product.vindAlleBeschikbare", query = "select p from Product p where p.koper is null and p.winkelwagen is null")
+        , @NamedQuery(name = "Product.vindAlleBeschikbare", query = "select p from Product p where p.koper is null and p.winkelwagen is null")
         , @NamedQuery(name = "Product.zoekInAlleBeschikbare", query = "select distinct p from Product p where p.koper is null AND p.winkelwagen is null AND (p.naam LIKE ?1 OR p.beschrijving LIKE ?2)")
 })
 public class Product extends Artikel {
@@ -36,6 +39,5 @@ public class Product extends Artikel {
 
     @ManyToOne(cascade = {PERSIST, MERGE, REMOVE})
     private Winkelwagen winkelwagen;
-
 
 }

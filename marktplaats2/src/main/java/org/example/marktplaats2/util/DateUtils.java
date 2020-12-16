@@ -10,7 +10,6 @@ public class DateUtils {
     public static final int MAX_LEEFTIJD_ADVERTENTIE_IN_DAGEN = 90;
     public static long TWENTY_THREE_HOURS_IN_MS = 82_800_000;
 
-
     public static LocalDate berekenDatumAantalDagenGeleden(int aantalDagen) {
         Date negentigDagenGeledenDate = Date.from(Instant.now().minus(Duration.ofDays(aantalDagen)));
         return convertToLocalDateViaInstant(negentigDagenGeledenDate);

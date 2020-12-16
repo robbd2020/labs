@@ -1,11 +1,11 @@
 package org.example.marktplaats2.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-
-import lombok.Getter;
 
 @MappedSuperclass
 @SuperBuilder
@@ -19,6 +19,4 @@ public abstract class AbstracteEntiteit {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_volgorde")
 
     protected Long id;
-
-
 }
