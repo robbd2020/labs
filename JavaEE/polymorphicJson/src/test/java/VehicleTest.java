@@ -14,20 +14,14 @@ import static org.junit.Assert.assertEquals;
 
 public class VehicleTest {
 
-
     private static final ObjectMapper MAPPER = new ObjectMapper();
-
-//    static {
-//        MAPPER.registerSubtypes(new NamedType(Truck.class, "Truck"));
-//        MAPPER.registerSubtypes(new NamedType(Car.class, "Car"));
-//    }
 
     @Test
     public void shouldSerializeVehicles() throws IOException {
-        final Vehicles vehicles = new Vehicles(ImmutableList.of(new Car("Dodge"), new Truck("Scania")));
+        final Vehicle[] vehicles = {new Car("Dodge"), new Truck("Scania")};
         final String json = MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(vehicles);
         System.out.println(json);
-        final Vehicles read = MAPPER.readValue(json, Vehicles.class);
+        final Vehicle[] read = MAPPER.readValue(json, Vehicle[].class);
         assertEquals(vehicles, read);
     }
 }
